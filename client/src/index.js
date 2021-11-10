@@ -1,19 +1,11 @@
 import { render } from "react-dom";
-import {
-  BrowserRouter,
-  Routes,
-  Route
-} from "react-router-dom";
-import Login from './components/Login'
-import Register from './components/Register'
+import { BrowserRouter as Router } from "react-router-dom";
+import App from './App'
 
 const rootElement = document.getElementById("root");
 render(
-  <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<Login />} />
-      <Route path="/register" element={<Register />}></Route>
-    </Routes>
-  </BrowserRouter>,
+  <Router>
+    <App />
+  </Router>,
   rootElement
 );

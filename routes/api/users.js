@@ -11,9 +11,10 @@ const router = express.Router();
 // @access Public
 router.post("/login", async (req, res) => {
     //validate
-    const { error, isValid } = validateLoginInput(req.body);
+    const { errors, isValid } = validateLoginInput(req.body);
+    errors['success'] = isValid
     if (!isValid)
-        return res.status(400).json(errors);
+        return res.json(errors);
 
     // connnect to database
     const db = mongoUtil.getDB();
@@ -23,11 +24,11 @@ router.post("/login", async (req, res) => {
     const password = req.body.password;
 
     //check that the informations is in the database
-    var user = _users.findOne({ username: `${username}` })
+    var user = await users.findOne({ username: `${username}` })
     if (!user)
-        return res.status(404).json({ message: "Username not found", success: false });
+        return res.json({ message: "Username not found", success: false });
     if (user.password != password)
-        return res.status(404).json({ message: "Password incorrect", success: false });
+        return res.json({ message: "Password incorrect", success: false });
     return res.json({ success: true })
 });
 // @route POST api/users/register
@@ -37,8 +38,9 @@ router.post("/register", async (req, res) => {
     // Form validation
     const { errors, isValid } = validateRegisterInput(req.body);
     // Check validation
+    errors['success'] = isValid
     if (!isValid)
-        return res.status(400).json(errors);
+        return res.json(errors);
     // connnect to database
     const db = mongoUtil.getDB();
     const users = await db.collection('users')
@@ -46,7 +48,7 @@ router.post("/register", async (req, res) => {
     const username = req.body.username
     var user = await users.findOne({ username: `${username}` })
     if (user)
-        return res.status(404).json({ message: "Username taken", success: false });
+        return res.json({ message: "Username taken", success: false });
     //insert document into database
     const result = await users.insertOne(req.body)
     return res.json({ success: true })

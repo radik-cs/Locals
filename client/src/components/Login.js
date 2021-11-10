@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {useNavigate} from 'react-router-dom';
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom"; 
@@ -7,6 +8,7 @@ import "./Login.css";
 const axios = require('axios')
 
 export default function Login() {
+  const navigate = useNavigate()
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -14,11 +16,19 @@ export default function Login() {
     return username.length > 0 && password.length > 0;
   }
 
-  function handleSubmit(event) {
-    //check if the information is valid
-    //route to homepage is succesful login
-    //promp the user to try again if unsscyessful
+  async function handleSubmit(event) {
     event.preventDefault();
+    const user = {
+        username,
+        password
+    }
+    let response = await axios.post("/api/users/login", user)
+    let success = response.data.success
+    if (success)
+        navigate("/homepage", {replace : true});
+    else
+        alert(`${response.data.message}`)
+    
   }
 
   return (

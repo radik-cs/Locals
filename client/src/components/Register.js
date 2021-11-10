@@ -1,41 +1,40 @@
 import React, { useState } from "react";
+import {useNavigate} from 'react-router-dom';
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { Link } from "react-router-dom";
 import "./Register.css";
 
 const axios = require('axios')
 
 export default function Register() {
+    const navigate = useNavigate()
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [password2, setPassword2] = useState("");
-    const [response, setReponse] = useState("Response Objects")
 
     function validateForm() {
         let usernameValid = username.length > 0
         let passwordValid = password.length > 0
-        let passwordsMatch = password == password2
+        let passwordsMatch = password === password2
         return usernameValid && passwordValid && passwordsMatch
     }
 
     async function handleSubmit(event) {
+        event.preventDefault();
         const user = {
             username,
             password
         }
-        await axios.post("/api/users/register", user)
-        //axios post requests working, just need to see the http response so the user knows 
-        //whether it was succesful
-        // if sucess
-        // reroute to homepage
-        // if not, tell the user why
-        event.preventDefault();
+        let response = await axios.post("/api/users/register", user)
+        let success = response.data.success
+        if (success)
+            navigate("/homepage", {replace : true});
+        else
+            alert(`${response.data.message}`)
     }
 
     return (
         <div className="Register">
-            <h1>{response}</h1>
             <Form onSubmit={handleSubmit}>
                 <Form.Group size="lg" controlId="username">
                     <Form.Label>Username</Form.Label>
