@@ -5,3 +5,4 @@
 # cd ..
 # make sure the monog server is running
 # npm run dev
+# localhost:3000
