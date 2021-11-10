@@ -3,6 +3,6 @@
 # cd client
 # npm install
 # cd ..
-# make sure the monog server is running
+# make sure the mongo server is running
 # npm run dev
 # localhost:3000
