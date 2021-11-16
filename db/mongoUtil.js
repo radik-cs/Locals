@@ -1,22 +1,21 @@
 const MongoClient = require('mongodb').MongoClient
-const uri = 'mongodb://localhost:27017'
 
-var _db
-
-const connectDB = async (callback) => {
-    try {
-        MongoClient.connect(uri, async (err, db) => {
-            _db = await db.db('locals')
-            return callback(err)
-        })
-
-    } catch (err) {
-        throw err
+class MongoUtil {
+    static uri = 'mongodb://localhost:27017'
+    static db
+    static async connectDB() {
+        try {
+            let client = await MongoClient.connect(this.uri);
+            this.db = await client.db('locals')
+        }
+        catch (err) { return err }
     }
+    static async pingDB() {
+        try { await this.db.admin().ping() }
+        catch (err) { return err }
+    }
+    static getDB() { return this.db }
+    static disconnectDB() { this.db.close() }
 }
 
-const getDB = () => _db
-
-const disconnectDB = () => _db.close()
-
-module.exports = { connectDB, getDB, disconnectDB }
+module.exports = MongoUtil

@@ -1,5 +1,6 @@
 const express = require("express");
-const mongoUtil = require('../../db/mongoUtil')
+const MongoUtil = require('../../db/MongoUtil')
+
 //validation functions
 const validateLoginInput = require("../../validation/login");
 const validateRegisterInput = require("../../validation/register");
@@ -17,7 +18,7 @@ router.post("/login", async (req, res) => {
         return res.json(errors);
 
     // connnect to database
-    const db = mongoUtil.getDB();
+    const db = MongoUtil.getDB();
     const users = await db.collection('users')
 
     const username = req.body.username;
@@ -42,7 +43,7 @@ router.post("/register", async (req, res) => {
     if (!isValid)
         return res.json(errors);
     // connnect to database
-    const db = mongoUtil.getDB();
+    const db = MongoUtil.getDB();
     const users = await db.collection('users')
     // check if username exists
     const username = req.body.username
@@ -53,4 +54,5 @@ router.post("/register", async (req, res) => {
     const result = await users.insertOne(req.body)
     return res.json({ success: true })
 });
+
 module.exports = router;
