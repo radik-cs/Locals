@@ -1,13 +1,12 @@
-<<<<<<< HEAD
+
 import "./home.css"
 import React, { useEffect } from 'react'
-=======
-import "./home.css";
-import React from 'react';
->>>>>>> 512cbdcd7f6f41b687bf8eb66ccccd1c62dbcb56
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Routes, Route, Link, useLocation } from "react-router-dom";
+
+//components
 import CreateEvents from "./createEvents.component"
+import MyEvents from "./myevents.component"
 
 export default function Home(props) {
     const state = useLocation();
@@ -30,14 +29,11 @@ export default function Home(props) {
 
                 <div className="profile-nav">
                     <a href="#">Friends</a>
-<<<<<<< HEAD
                     <Link className="nav-link" to={"create-events"}>Create Event</Link>
                     <a href="#" onClick={dummyFunction}>Local Feed</a>
-=======
-                    <Link className="nav-link" to={"/home/create-events"}>Create Event</Link>
+                    <Link className="nav-link" to={"create-events"}>Create Event</Link>
                     <a href="#" onclick="location.href='social_feed.html'">Local Feed</a>
-                    <Link className="nav-link" to={"/home/create-events"}>My Events</Link>
->>>>>>> 512cbdcd7f6f41b687bf8eb66ccccd1c62dbcb56
+                    <Link className="nav-link" to={"my-events"}>My Events</Link>
                 </div>
             </div>
 
@@ -45,6 +41,7 @@ export default function Home(props) {
             <div class = "event-creation">
                 <Routes>
                     <Route path="create-events" element={<CreateEvents username={username} />} />
+                    <Route path="my-events" element={<MyEvents username={username} />} />
                 </Routes>
             </div>
         </div>
