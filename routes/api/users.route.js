@@ -38,8 +38,7 @@ router.post("/login", async (req, res) => {
 router.post("/register", async (req, res) => {
     // Form validation
     const { errors, isValid } = validateRegisterInput(req.body);
-    // Check validation
-    errors['success'] = isValid
+    errors["sucess"] = isValid
     if (!isValid)
         return res.json(errors);
     // connnect to database
@@ -48,11 +47,15 @@ router.post("/register", async (req, res) => {
     // check if username exists
     const username = req.body.username
     var user = await users.findOne({ username: `${username}` })
-    if (user)
-        return res.json({ message: "Username taken", success: false });
+    if (user){
+        errors.username = "Username taken"
+        errors.sucess = false
+        return res.json(errors)
+    }
     //insert document into database
     const result = await users.insertOne(req.body)
-    return res.json({ success: true })
+    console.log(result)
+    return res.json(errors)
 });
 
 module.exports = router;

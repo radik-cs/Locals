@@ -32,13 +32,3 @@ async function main() {
     //setup up api listener
     app.listen(port, () => console.log(`Web server up and running on port ${port} !`));
 }
-
-
-// mongoUtil.connectDB(async (err) => {
-//     if (err) throw err
-//     else console.log("Connected to database server")
-//     // Routes
-//     app.use("/api/users", usersRoute);
-//     app.listen(port, () => console.log(`Web server up and running on port ${port} !`));
-// })
-
