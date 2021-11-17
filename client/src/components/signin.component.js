@@ -7,7 +7,7 @@ export default function SignIn() {
     const navigate = useNavigate()
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    
+
     async function handleSubmit(event) {
         event.preventDefault()
         const user = {
@@ -20,18 +20,18 @@ export default function SignIn() {
         let response = await axios.post("/api/users/login", user)
         let success = response.data.success
         // let do better than a chrome aler
-        if (success){
+        if (success) {
             navigate(`/home/${username}`, { replace: true, state: { id: 7, color: 'green' } });
         }
         else
             alert(`${response.data.message}`)
     }
 
-    
+
 
     return (
-        <form className = "signin-form" onSubmit={handleSubmit}>
-            <div className = "description">
+        <form className="signin-form" onSubmit={handleSubmit}>
+            <div className="description">
                 <h3>Login</h3>
             </div>
             <div className="form-group">

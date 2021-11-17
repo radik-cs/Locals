@@ -47,7 +47,7 @@ router.post("/register", async (req, res) => {
     // check if username exists
     const username = req.body.username
     var user = await users.findOne({ username: `${username}` })
-    if (user){
+    if (user) {
         errors.username = "Username taken"
         errors.sucess = false
         return res.json(errors)

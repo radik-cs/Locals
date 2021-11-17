@@ -19,7 +19,7 @@ router.post("/get-events", async (req, res) => {
     const events = await db.collection('events')
     console.log("requested user events")
     const username = req.body.username
-    let query = {username : `${username}`}
+    let query = { username: `${username}` }
     const result = await events.find(query).toArray()
     console.log(result)
     return res.json(result)

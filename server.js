@@ -17,16 +17,16 @@ main()
 async function main() {
     // connect to database
     let err = await MongoUtil.connectDB()
-    if (err){
+    if (err) {
         console.log("error connecting to databse")
         throw err
-    }else 
+    } else
         console.log("successfully connected to database")
 
     //set up api endpoints
     app.use("/api/users", usersRoute);
     app.use("/api/events", eventsRoute);
-    
+
     //setup up api listener
     app.listen(port, () => console.log(`Web server up and running on port ${port} !`));
 }
