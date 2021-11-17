@@ -24,7 +24,7 @@ export default function SignUp() {
         let response = await axios.post("/api/users/register", user)
         let success = response.data.success
         if (success)
-            navigate("/homepage", { replace: true });
+            navigate("/home", { replace: true });
         else
             alert(`${response.data.message}`)
     }

@@ -25,8 +25,8 @@ export default function Login() {
                 </div>
             </nav>
 
-            <div class ="auth-wrapper">
-                <div class="auth-inner">
+            <div className="auth-wrapper">
+                <div className="auth-inner">
                     <Routes>
                         <Route path="" element={<SignIn />} />
                         <Route path="sign-in" element={<SignIn />} />

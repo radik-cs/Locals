@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 const axios = require("axios")
 
-export default function CreateEvent() {
+export default function CreateEvent(props) {
     const navigate = useNavigate()
     const [name, setName] = useState("");
     const [location, setLocation] = useState("");
@@ -14,16 +14,20 @@ export default function CreateEvent() {
         datetime : true,
         descriptio: true
     })
+    const username = props.username
 
     async function handleSubmit(e) {
         e.preventDefault()
         validateForm()
         const event = {
+            username,
             name,
             location,
             datetime,
             description,
         }
+        console.log(event)
+        
         //validate input
         if (errors.name || errors.location || errors.datetime || errors.description)
             return

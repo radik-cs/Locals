@@ -20,8 +20,9 @@ export default function SignIn() {
         let response = await axios.post("/api/users/login", user)
         let success = response.data.success
         // let do better than a chrome aler
-        if (success)
-            navigate("/home", {replace : true});
+        if (success){
+            navigate(`/home/${username}`, { replace: true, state: { id: 7, color: 'green' } });
+        }
         else
             alert(`${response.data.message}`)
     }
@@ -29,8 +30,8 @@ export default function SignIn() {
     
 
     return (
-        <form class = "signin-form" onSubmit={handleSubmit}>
-            <div class = "discription">
+        <form className = "signin-form" onSubmit={handleSubmit}>
+            <div className = "description">
                 <h3>Login</h3>
             </div>
             <div className="form-group">
