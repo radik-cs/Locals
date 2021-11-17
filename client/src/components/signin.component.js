@@ -21,8 +21,10 @@ export default function SignIn() {
         //if there are errors, return from the function, the user will automatically be notified of problems
         // it would better to use a modal here
         // this is also the reason you have to hit the button twice
-        if (errors.username || errors.password)
+        if (errors.username || errors.password){
+            alert("something went wrong, please try again")
             return
+        }
 
         //check with database
         const user = {
@@ -56,7 +58,7 @@ export default function SignIn() {
     return (
         <form className="signin-form" onSubmit={handleSubmit}>
             <div className="description">
-                <h3>Login</h3>
+                <h3>Sign-In</h3>
             </div>
             <div className="form-group">
                 <label>Username</label>

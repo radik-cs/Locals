@@ -21,8 +21,10 @@ export default function SignUp() {
         //if there are errors, return from the function, the user will automatically be notified of problems
         // it would better to use a modal here
         // this is also the reason you have to hit the button twice
-        if (errors.username || errors.password || errors.password2)
+        if (errors.username || errors.password || errors.password2){
+            alert("something went wrong, please try again")
             return
+        }
 
         //check database
         const user = {
@@ -31,10 +33,9 @@ export default function SignUp() {
             password2
         }
         let response = await axios.post("/api/login/sign-up", user)
-        //let user know status of requests\
-        console.log(response.data)
+        //let user know status of req
         if (response.data.success) {
-            alert("Account created succesfully")
+            alert("Account created successfully")
             navigate(`/home/${username}`, { replace: true, state: { id: 7, color: 'green' } });
         }
         else {

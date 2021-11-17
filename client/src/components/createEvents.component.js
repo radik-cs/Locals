@@ -14,8 +14,8 @@ export default function CreateEvent(props) {
     const [description, setDescription] = useState("")
     const [errors, setErrors] = useState({
         name: true,
-        location : true,
-        datetime : true,
+        location: true,
+        datetime: true,
         descriptio: true
     })
     //extract the component properties for ease of access
@@ -24,36 +24,43 @@ export default function CreateEvent(props) {
     async function handleSubmit(e) {
         e.preventDefault()
         validateForm()
+        //validate input
+        if (errors.name || errors.location || errors.datetime || errors.description){
+            alert("something went wrong, please try again")
+            return
+        }
+
+        //api request
         const event = {
             username,
             name,
             location,
             datetime,
-            description,
+            description
         }
-        console.log(event)
-        
-        //validate input
-        if (errors.name || errors.location || errors.datetime || errors.description)
-            return
-        //insert into database
         let response = await axios.post("/api/events", event)
-        console.log(response)
+        if (response.data.success){
+            alert("Event created successfully")
+            navigate("my-events", {replace: true})
+        }
+        else{
+            alert("event creation unsuccessful")
+        }
     }
 
-    function validateForm(){
+    function validateForm() {
         let errors = {}
         errors.name = name.length <= 0 ? "name field is required" : false
         errors.location = location.length <= 0 ? "location field is required" : false
-        errors.datetime = datetime.length <=  0 ? "Date/time field is required" : false
-        errors.description = description.length <=  0 ? "description field is required" : false
+        errors.datetime = datetime.length <= 0 ? "Date/time field is required" : false
+        errors.description = description.length <= 0 ? "description field is required" : false
         setErrors(errors)
     }
 
     return (
-        
+
         <form onSubmit={handleSubmit}>
-            <div className= "description">
+            <div className="description">
                 <h3>Create Event</h3>
             </div>
             <div className="form-group">
@@ -109,6 +116,6 @@ export default function CreateEvent(props) {
             <button type="submit" className="btn btn-primary btn-block">Submit</button>
         </form>
 
-        
+
     );
 }
