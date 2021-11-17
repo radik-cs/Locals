@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 //components
 import EventCard from "./eventcard.component"
-
+import "./myevents.css"
 const axios = require("axios")
 
 
@@ -17,9 +17,9 @@ export default function MyEvents(props) {
     }, [])
     //there is an error with the key property
     return (
-        <div>
+        <div class = "my-events-card">
             <ul>
-                {events.map((event,idx) => <li><EventCard key={idx} event={event} /></li>)}
+                {events.map((event,idx) => <li class = "event"><EventCard key={idx} event={event} /></li>)}
             </ul>
         </div>
     )
