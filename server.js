@@ -14,12 +14,6 @@ app.use(bodyParser.json())
 
 main()
 
-function sleep(ms) {
-    return new Promise((resolve) => {
-        setTimeout(resolve, ms);
-    });
-}
-
 async function main() {
     // connect to database
     let err = await MongoUtil.connectDB()
@@ -33,7 +27,6 @@ async function main() {
     app.use("/api/users", usersRoute);
     app.use("/api/events", eventsRoute);
     
-
     //setup up api listener
     app.listen(port, () => console.log(`Web server up and running on port ${port} !`));
 }
