@@ -39,8 +39,9 @@ export default function SignUp() {
 
     return (
         <form onSubmit={handleSubmit}>
-            <h3>Sign Up</h3>
-
+            <div class= "discription">
+                <h3>Sign Up</h3>
+            </div>
             <div className="form-group">
                 <label>Username</label>
                 <input

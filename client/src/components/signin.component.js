@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./login.css"
 import { useNavigate } from 'react-router-dom';
 const axios = require("axios")
 
@@ -28,9 +29,10 @@ export default function SignIn() {
     
 
     return (
-        <form onSubmit={handleSubmit}>
-            <h3>Sign In</h3>
-
+        <form class = "signin-form" onSubmit={handleSubmit}>
+            <div class = "discription">
+                <h3>Login</h3>
+            </div>
             <div className="form-group">
                 <label>Username</label>
                 <input
