@@ -5,7 +5,9 @@ import "./home.css";
 const axios = require("axios")
 
 export default function CreateEvent(props) {
+    //navigator
     const navigate = useNavigate()
+    //state defintions
     const [name, setName] = useState("");
     const [location, setLocation] = useState("");
     const [datetime, setDateTime] = useState("")
@@ -16,6 +18,7 @@ export default function CreateEvent(props) {
         datetime : true,
         descriptio: true
     })
+    //extract the component properties for ease of access
     const username = props.username
 
     async function handleSubmit(e) {
@@ -50,7 +53,7 @@ export default function CreateEvent(props) {
     return (
         
         <form onSubmit={handleSubmit}>
-            <div class = "description">
+            <div className= "description">
                 <h3>Create Event</h3>
             </div>
             <div className="form-group">

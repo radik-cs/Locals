@@ -3,8 +3,6 @@ import React, { useEffect, useState } from 'react'
 import EventCard from "./eventcard.component"
 const axios = require("axios")
 
-//componenets
-
 
 
 export default function MyEvents(props) {
@@ -12,9 +10,9 @@ export default function MyEvents(props) {
     const username = props.username
 
 
+
     useEffect(async () => {
         let response = await axios.post("/api/events/get-events", { username })
-
         console.log(response.data)
         console.log(response.data)
         setEvents(response.data)

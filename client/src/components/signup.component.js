@@ -7,26 +7,46 @@ export default function SignUp() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [password2, setPassword2] = useState("");
-    const [errors, setErrors] = useState({})
+    const [errors, setErrors] = useState({
+        username: true,
+        password: true,
+        password2: true
+    })
 
     async function handleSubmit(event) {
+        //prevents page refresh
         event.preventDefault();
         //form validation, alert the user 
         validateForm()
+        //if there are errors, return from the function, the user will automatically be notified of problems
+        // it would better to use a modal here
+        // this is also the reason you have to hit the button twice
         if (errors.username || errors.password || errors.password2)
             return
+
         //check database
         const user = {
             username,
             password,
             password2
         }
-        let response = await axios.post("/api/users/register", user)
-        let success = response.data.success
-        if (success)
-            navigate("/home", { replace: true });
-        else
-            alert(`${response.data.message}`)
+        let response = await axios.post("/api/login/sign-up", user)
+        //let user know status of requests\
+        console.log(response.data)
+        if (response.data.success) {
+            alert("Account created succesfully")
+            navigate(`/home/${username}`, { replace: true, state: { id: 7, color: 'green' } });
+        }
+        else {
+            if (response.data.password)
+                alert(`${response.data.password}`)
+            else if (response.data.password2 )
+                alert(`${response.data.password2}`)
+            else if (response.data.username)
+                alert(`${response.data.username}`)
+            else
+                alert("Something went wrong, log in unsuccesful")
+        }
     }
 
     function validateForm() {
@@ -39,7 +59,7 @@ export default function SignUp() {
 
     return (
         <form onSubmit={handleSubmit}>
-            <div class="discription">
+            <div className="discription">
                 <h3>Sign Up</h3>
             </div>
             <div className="form-group">

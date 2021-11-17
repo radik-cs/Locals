@@ -1,10 +1,10 @@
 const express = require("express");
 const MongoUtil = require('./db/MongoUtil')
+var bodyParser = require('body-parser')
 
 //routes
-const usersRoute = require("./routes/api/users.route");
+const loginRoute = require("./routes/api/login.route");
 const eventsRoute = require("./routes/api/events.route");
-var bodyParser = require('body-parser')
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -24,7 +24,7 @@ async function main() {
         console.log("successfully connected to database")
 
     //set up api endpoints
-    app.use("/api/users", usersRoute);
+    app.use("/api/login", loginRoute);
     app.use("/api/events", eventsRoute);
 
     //setup up api listener
