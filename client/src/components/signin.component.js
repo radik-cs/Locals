@@ -22,7 +22,7 @@ export default function SignIn() {
         let success = response.data.success
         // let do better than a chrome aler
         if (success)
-            navigate("/homepage", {replace : true});
+            navigate("/home", {replace : true});
         else
             alert(`${response.data.message}`)
     }

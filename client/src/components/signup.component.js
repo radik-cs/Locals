@@ -14,7 +14,7 @@ export default function SignUp() {
         //form validation, alert the user 
         validateForm()
         if (errors.username || errors.password || errors.password2)
-            return 
+            return
         //check database
         const user = {
             username,
@@ -22,14 +22,13 @@ export default function SignUp() {
             password2
         }
         let response = await axios.post("/api/users/register", user)
-        console.log(response.data)
         let success = response.data.success
         if (success)
             navigate("/homepage", { replace: true });
         else
             alert(`${response.data.message}`)
     }
-    
+
     function validateForm() {
         let errors = {}
         errors.username = username.length <= 0 ? "Username field is required" : false
@@ -49,7 +48,7 @@ export default function SignUp() {
                     className="form-control"
                     placeholder="Choose username"
                     value={username}
-                    onChange={(e) => { setUsername(e.target.value) }}
+                    onChange={(e) => setUsername(e.target.value)}
                 />
             </div>
             <div className="text-danger">{errors.username}</div>
@@ -61,7 +60,7 @@ export default function SignUp() {
                     className="form-control"
                     placeholder="Enter password"
                     value={password}
-                    onChange={(e) => { setPassword(e.target.value) }}
+                    onChange={(e) => setPassword(e.target.value)}
                 />
             </div>
             <div className="text-danger">{errors.password}</div>

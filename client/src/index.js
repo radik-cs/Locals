@@ -1,12 +1,12 @@
+//possibly dont need this
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter } from "react-router-dom";
+//possibly dont need this could be source of blue
 import "./index.css";
+//application component
 import App from "./App";
 
 ReactDOM.render(
-    <BrowserRouter>
-        <App />
-    </BrowserRouter>,
+    <App />,
     document.getElementById("root")
 );
