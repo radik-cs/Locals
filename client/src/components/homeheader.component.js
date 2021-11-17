@@ -10,8 +10,12 @@ export default function HomeHeader(props) {
                 </svg>
             </div>
             <div className="profile-nav">
-                <Link className="nav-link" to={"create-events"}>Create Event</Link>
-                <Link className="nav-link" to={"my-events"}>My Events</Link>
+                <div className ="profile-links">
+                    <Link className="nav-link" to={"create-events"}>Create Event</Link>
+                </div>
+                <div className ="profile-links">
+                    <Link className="nav-link" to={"my-events"}>My Events</Link>
+                </div>
             </div>
         </div>
     );
