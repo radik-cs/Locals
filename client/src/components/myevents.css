@@ -9,7 +9,7 @@
     
 }
 
-.listevents{
+.listevents ul{
    margin: auto; 
    padding: 10px;
    width:inherit;
@@ -22,7 +22,7 @@
 }
 
 
-.event{
+.my-event {
 
     list-style-type: none;
     width: 500px;

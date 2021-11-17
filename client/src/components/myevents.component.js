@@ -19,7 +19,7 @@ export default function MyEvents(props) {
     return (
         <div class = "my-events-card">
             <ul class="listevents"> 
-                {events.map((event,idx) => <li class = "event"><EventCard key={idx} event={event} /></li>)}
+                {events.map((event,idx) => <li class= "my-event" ><EventCard key={idx} event={event} /></li>)}
             </ul>
         </div>
     )
