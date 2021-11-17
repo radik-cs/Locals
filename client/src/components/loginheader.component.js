@@ -1,6 +1,6 @@
 
 import { Link } from "react-router-dom";
-
+import "bootstrap/dist/css/bootstrap.min.css";
 export default function LoginHeader() {
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">

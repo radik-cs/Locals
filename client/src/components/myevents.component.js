@@ -18,7 +18,7 @@ export default function MyEvents(props) {
     //there is an error with the key property
     return (
         <div class = "my-events-card">
-            <ul>
+            <ul class="listevents"> 
                 {events.map((event,idx) => <li class = "event"><EventCard key={idx} event={event} /></li>)}
             </ul>
         </div>
