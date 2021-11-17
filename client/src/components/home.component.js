@@ -1,5 +1,5 @@
-import "./home.css"
-import React from 'react'
+import "./home.css";
+import React from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import CreateEvents from "./createEvents.component"
@@ -21,11 +21,12 @@ export default function Home() {
                     <a href="#">Friends</a>
                     <Link className="nav-link" to={"/home/create-events"}>Create Event</Link>
                     <a href="#" onclick="location.href='social_feed.html'">Local Feed</a>
+                    <Link className="nav-link" to={"/home/create-events"}>My Events</Link>
                 </div>
             </div>
 
             {/* body */}
-            <div>
+            <div class = "event-creation">
                 <Routes>
                     <Route path="create-events" element={<CreateEvents />} />
                 </Routes>

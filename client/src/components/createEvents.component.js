@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
+//import "./createEvents.css";
+import "./home.css";
 const axios = require("axios")
 
 export default function CreateEvent() {
@@ -42,9 +44,11 @@ export default function CreateEvent() {
     }
 
     return (
+        
         <form onSubmit={handleSubmit}>
-            <h3>Create Event</h3>
-
+            <div class = "description">
+                <h3>Create Event</h3>
+            </div>
             <div className="form-group">
                 <label>Name</label>
                 <input
@@ -97,5 +101,7 @@ export default function CreateEvent() {
 
             <button type="submit" className="btn btn-primary btn-block">Submit</button>
         </form>
+
+        
     );
 }
