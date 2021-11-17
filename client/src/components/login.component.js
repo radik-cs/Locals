@@ -12,8 +12,6 @@ export default function Login() {
         <div>
             <LoginHeader />
             <div className="body">
-                <Routes>
-                </Routes>
                 <SignIn />
             </div>
 
