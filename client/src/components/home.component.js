@@ -7,6 +7,7 @@ import CreateEvents from "./createEvents.component"
 export default function Home() {
     return (
         <body>
+            {/* header */}
             <div class="profile-header" id="myheader">
                 <div class="profile-name">@username</div>
                 <div class="profile-pic">
@@ -23,11 +24,8 @@ export default function Home() {
                 </div>
             </div>
 
-            <div class="profile-posts">
-
-            </div>
-
-            <div className="auth-wrapper">
+            {/* body */}
+            <div>
                 <Routes>
                     <Route path="create-events" element={<CreateEvents />} />
                 </Routes>

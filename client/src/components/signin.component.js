@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 const axios = require("axios")
 
-
-
 export default function SignIn() {
     const navigate = useNavigate()
     const [username, setUsername] = useState("");
