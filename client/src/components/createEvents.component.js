@@ -8,30 +8,38 @@ export default function CreateEvent() {
     const [location, setLocation] = useState("");
     const [datetime, setDateTime] = useState("")
     const [description, setDescription] = useState("")
+    const [errors, setErrors] = useState({
+        name: true,
+        location : true,
+        datetime : true,
+        descriptio: true
+    })
 
     async function handleSubmit(e) {
         e.preventDefault()
+        validateForm()
         const event = {
             name,
             location,
             datetime,
             description,
         }
-        console.log(name)
-        console.log(location)
         //validate input
-        //if valid, ping database
-        //if not valid, let user know
-        // let response = await axios.post("/api//login", user)
-        // let success = response.data.success
-        // // let do better than a chrome aler
-        // if (success)
-        //     navigate("/home", {replace : true});
-        // else
-        //     alert(`${response.data.message}`)
+        if (errors.name || errors.location || errors.datetime || errors.description)
+            return
+        //insert into database
+        let response = await axios.post("/api/events", event)
+        console.log(response)
     }
 
-    
+    function validateForm(){
+        let errors = {}
+        errors.name = name.length <= 0 ? "name field is required" : false
+        errors.location = location.length <= 0 ? "location field is required" : false
+        errors.datetime = datetime.length <=  0 ? "Date/time field is required" : false
+        errors.description = description.length <=  0 ? "description field is required" : false
+        setErrors(errors)
+    }
 
     return (
         <form onSubmit={handleSubmit}>
@@ -47,6 +55,7 @@ export default function CreateEvent() {
                     onChange={(e) => setName(e.target.value)}
                 />
             </div>
+            <div className="text-danger">{errors.name}</div>
 
             <div className="form-group">
                 <label>Location</label>
@@ -58,6 +67,31 @@ export default function CreateEvent() {
                     onChange={(e) => setLocation(e.target.value)}
                 />
             </div>
+            <div className="text-danger">{errors.location}</div>
+
+            <div className="form-group">
+                <label>Date/Time</label>
+                <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Enter the date and time"
+                    value={datetime}
+                    onChange={(e) => setDateTime(e.target.value)}
+                />
+            </div>
+            <div className="text-danger">{errors.datetime}</div>
+
+            <div className="form-group">
+                <label>Description</label>
+                <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Enter the date and time"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                />
+            </div>
+            <div className="text-danger">{errors.description}</div>
 
             <p> </p>
 
