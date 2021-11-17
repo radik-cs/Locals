@@ -1,10 +1,12 @@
-//possibly dont need this
+
 import React from "react";
 import ReactDOM from "react-dom";
-//application component
+import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 
 ReactDOM.render(
-    <App />,
+    <BrowserRouter>
+        <App />
+    </BrowserRouter>,
     document.getElementById("root")
 );
