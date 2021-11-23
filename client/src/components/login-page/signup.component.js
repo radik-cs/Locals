@@ -22,7 +22,7 @@ export default function SignUp() {
         let response = await axios.post("/api/login/sign-up", user)
 
         if (response.data.success)
-            navigate(`/${username}`, { replace: true });
+            navigate(`/${username}`, {state:{username:`${username}`}});
         else
             setError(response.data.message)
     }
