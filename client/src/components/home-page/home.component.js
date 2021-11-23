@@ -16,9 +16,7 @@ export default function Home(props) {
             <HomeHeader username={username}/>
             <div className="event-body">
                 <Routes>
-                
                     <Route path="create-events" element={<CreateEvents username={username} />} />
-                    
                     <Route path="my-events" element={<MyEvents username={username} />} />
                 </Routes>
             </div>

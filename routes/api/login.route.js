@@ -1,36 +1,44 @@
 const express = require("express");
 const MongoUtil = require('../../db/MongoUtil')
-
-//validation functions
-const validateSignInInput = require("../../validation/signin.validator");
-const validateSignUpInput = require("../../validation/signup.validator");
-
 const router = express.Router();
 
 // @route POST api/users/login
-// @desc Login user and return JWT token
+// @desc Sign in user
 // @access Public
 router.post("/sign-in", async (req, res) => {
-    //validate
-    let { errors, isValid } = validateSignInInput(req.body);
-    errors['success'] = isValid
-    if (!isValid)
+    //extract body of request
+    let username = req.body.username
+    let password = req.body.password
+
+
+    //validation
+    let isValid = username.length > 0 && password.length > 0
+
+    //default errors response object
+    let errors = {}
+    errors.success = isValid
+    errors.message = ""
+
+    if (!errors.success) {
+        errors.message = "Password and username cannot be empty."
         return res.json(errors);
-    //extract request body
-    let username = req.body.username;
-    let password = req.body.password;
+    }
+
 
     // query databse
-    let query = {username:`${username}`}
     let db = MongoUtil.getDB();
+    console.log(username)
+    console.log(password)
     let users = await db.collection('users')
     let user = await users.findOne({ username: `${username}` })
 
-    //validate username exists and password is correct
-    //dont tell the client if the user does not exist
-    if (!user || user.password != password){
+    console.log(user)
+
+
+    //if user does not exist or password is incorrect
+    if (!user || user.password != password) {
         errors.success = false;
-        errors.password = "Incorrect password"
+        errors.message = "Sorry, incorrect password. Please try again."
     }
     return res.json(errors)
 });
@@ -38,29 +46,35 @@ router.post("/sign-in", async (req, res) => {
 // @desc Register user
 // @access Public
 router.post("/sign-up", async (req, res) => {
-    // Form validation
-    let { errors, isValid } = validateSignUpInput(req.body);
-    errors["success"] = isValid
-    if (!isValid)
-        return res.json(errors);
     //extract request body
-    let username = req.body.username;
-    let password = req.body.password;
+    let username = req.body.username
+    let password = req.body.password
+    let password2 = req.body.password2
+
+    //validation
+    let isValid = username.length > 0 && password.length > 0 && password2.length
+
+    //default errors response object
+    let errors = {}
+    errors.success = isValid
+    errors.message = ""
+
+    if (!errors.success) {
+        errors.message = "Username, Passsword, and Re-Entered password cannot be empty."
+        return res.json(errors)
+    }
 
     // query databse
-    let query = {username:`${username}`}
     let db = MongoUtil.getDB();
     let users = await db.collection('users')
     let user = await users.findOne({ username: `${username}` })
 
+    //if a user with the username exists
     if (user) {
-        errors.username = "Username taken"
+        errors.message = "Username taken, please choose a different one."
         errors.success = false
-        return res.json(errors)
-    }
-    //insert document into database
-    await users.insertOne(req.body)
+    } else
+        await users.insertOne({username: `${username}`, password: `${password}`})
     return res.json(errors)
 });
-
 module.exports = router;
