@@ -5,7 +5,6 @@ import SignIn from "./signin.component"
 import SignUp from "./signup.component"
 
 export default function Login(props) {
-    //states
     const [currentTab, setCurrentTab] = useState("signin")
     const tabList = [
         {
@@ -21,28 +20,22 @@ export default function Login(props) {
     ]
     return (
         <div>
-            {/* login page header - contains the tab buttons*/}
-            <div>
-                <h1>Locals</h1>
-                {/*tab buttons*/
-                    tabList.map((tab, i) =>
-                        <button key={i} onClick={() => setCurrentTab(tab.name)}>
-                            {tab.label}
-                        </button>
-                    )
-                }
-            </div>
-            {/* login page body - contains the tab body*/}
-            <div>
-                { /*renders the selected tab */
-                    tabList.map((tab, i) => {
-                        if (tab.name === currentTab)
-                            return <div key={i}>{tab.content}</div>;
-                        else
-                            return null;
-                    })
-                }
-            </div>
+            <h1>Locals</h1>
+            {/*tab buttons - renders the tab buttons based on the tabList array defined above*/
+                tabList.map((tab, i) =>
+                    <button key={i} onClick={() => setCurrentTab(tab.name)}>
+                        {tab.label}
+                    </button>
+                )
+            }
+            {/*login page body - renders the body based on the selected tab and the tabList array defined above*/
+                tabList.map((tab, i) => {
+                    if (tab.name === currentTab)
+                        return <div key={i}>{tab.content}</div>;
+                    else
+                        return null;
+                })
+            }
         </div>
     );
 
