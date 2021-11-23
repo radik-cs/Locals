@@ -34,7 +34,7 @@ export default function Login(props) {
             </div>
             {/* login page body - contains the tab body*/}
             <div>
-                {
+                { /*renders the selected tab */
                     tabList.map((tab, i) => {
                         if (tab.name === currentTab)
                             return <div key={i}>{tab.content}</div>;
