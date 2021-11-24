@@ -10,23 +10,19 @@ export default function SignUp() {
     const [password2, setPassword2] = useState("");
     const [error, setError] = useState("")
 
-    async function handleSubmit(e) {
+    function handleSubmit(e) {
         e.preventDefault();
-
         if (password !== password2) {
             setError("Passwords do not match")
             return
         }
-
         const user = { username, password, password2 }
-        //loading animation
-        let response = await axios.put("/api/login/", user)
-
-        //better error handling
-        if (response.data.success)
-            navigate(`/${username}`, { state: { username: `${username}` } });
-        else
-            setError(response.data.message)
+        axios.post("/api/login", user).then(res => {
+            if (res.data.success)
+                navigate(`/${username}`, { state: { username: `${username}` } });
+            else
+                setError(res.data.message)
+        })
     }
     function isFormValid() {
         return username.length > 0 && password.length > 0 && password2.length

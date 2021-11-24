@@ -3,10 +3,9 @@ const MongoUtil = require('../../db/MongoUtil')
 
 const router = express.Router();
 
-
-//add or edit an event
+//add/edit event
 router.put("/", (req, res) => {
-    let errors = {success: true, message : ""}
+    let errors = { success: true, message: "" }
     let eventsColl = MongoUtil.getDB().collection('events')
     eventsColl.insertOne(req.body).then(() => {
         res.send(errors)
