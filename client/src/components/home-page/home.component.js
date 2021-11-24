@@ -16,7 +16,7 @@ export default function Home(props) {
         {
             name: "my-events",
             label: "My Events",
-            content: <MyEvents username={username}/>
+            content: <MyEvents username={username} />
         },
         {
             name: "search-events",
@@ -31,6 +31,7 @@ export default function Home(props) {
     ]
     return (
         <div>
+            <h1>@{username}</h1>
             {/*header - has the tab buttons and username*/
                 tabList.map((tab, i) =>
                     <button key={i} onClick={() => setCurrentTab(tab.name)}>

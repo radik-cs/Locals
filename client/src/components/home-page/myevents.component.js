@@ -13,10 +13,17 @@ export default function MyEvents(props) {
     const [events, setEvents] = useState([])
     const [isModalOpen, setIsModalOpen] = useState(false)
 
+    function updateMyEvents() {
+        let query = { host: `${username}` }
+        axios.get("/api/events", { params: query }).then(res => {
+            setEvents(res.data)
+        })
+    }
+
     useEffect(() => {
         let query = { host: `${username}` }
-        axios.get("/api/events", {params:query}).then(response => {
-            setEvents(response.data)
+        axios.get("/api/events", { params: query }).then(res => {
+            setEvents(res.data)
         })
     }, [username, isModalOpen])
 
@@ -31,7 +38,7 @@ export default function MyEvents(props) {
                 {
                     events.map((event, idx) =>
                         <li key={idx}>
-                            <EventCard key={idx} event={event} />
+                            <EventCard updateMyEvents={updateMyEvents} key={idx} event={event} />
                         </li>)
                 }
             </ul>
