@@ -9,18 +9,15 @@ export default function SignIn() {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("")
 
-    async function handleSubmit(e) {
+    function handleSubmit(e) {
         e.preventDefault()
-
-        const user = { username, password }
-        //maybe use a loading animation while we wait for the server
-        let response = await axios.post("/api/login/sign-in", user)
-
-        //should probably do some better error handling here
-        if (response.data.success)
-            navigate(`/${username}`, { state: { username: `${username}` } });
-        else
-            setError(response.data.message)
+        let query = { username, password }
+        axios.get("/api/login", { params: query }).then(res => {
+            if (res.data.success)
+                navigate(`/${username}`, { state: { username: `${username}` } });
+            else
+                setError(res.data.message)
+        })
     }
     function isFormValid() {
         return username.length > 0 && password.length > 0

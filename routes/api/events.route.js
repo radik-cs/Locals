@@ -4,8 +4,8 @@ const MongoUtil = require('../../db/MongoUtil')
 const router = express.Router();
 
 
-//should do more error checking here
-router.put("/", async (req, res) => {
+//add or edit an event
+router.put("/", (req, res) => {
     let errors = {success: true, message : ""}
     let eventsColl = MongoUtil.getDB().collection('events')
     eventsColl.insertOne(req.body).then(() => {
@@ -13,7 +13,8 @@ router.put("/", async (req, res) => {
     })
 });
 
-router.get("/", async (req, res) => {
+//get events
+router.get("/", (req, res) => {
     let eventsColl = MongoUtil.getDB().collection('events')
     eventsColl.find(req.query).toArray().then(result => {
         res.send(result)

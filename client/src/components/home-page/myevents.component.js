@@ -14,7 +14,8 @@ export default function MyEvents(props) {
     const [isModalOpen, setIsModalOpen] = useState(false)
 
     useEffect(() => {
-        axios.get("/api/events", { host: `${username}` }).then(response => {
+        let query = { host: `${username}` }
+        axios.get("/api/events", {params:query}).then(response => {
             setEvents(response.data)
         })
     }, [username, isModalOpen])

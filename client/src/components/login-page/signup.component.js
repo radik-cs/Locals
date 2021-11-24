@@ -20,7 +20,7 @@ export default function SignUp() {
 
         const user = { username, password, password2 }
         //loading animation
-        let response = await axios.post("/api/login/sign-up", user)
+        let response = await axios.put("/api/login/", user)
 
         //better error handling
         if (response.data.success)
