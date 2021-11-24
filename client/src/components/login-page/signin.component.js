@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import "./login-page.css"
 const axios = require("axios")
 
 export default function SignIn() {
@@ -24,17 +25,21 @@ export default function SignIn() {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <h3>Sign In</h3>
+        <div className = "signin">
+            <form onSubmit={handleSubmit}>
+                <h3>Sign In</h3>
 
-            <label>Username</label>
-            <input type="username" placeholder="Enter username" onChange={(e) => setUsername(e.target.value)} />
-
-            <label>Password</label>
-            <input type="password" placeholder="Enter password" onChange={(e) => setPassword(e.target.value)} />
-
-            <p>{error}</p>
-            <button disabled={!isFormValid()} type="submit">Submit</button>
-        </form>
+                <div className = "input-username">
+                <label>Username</label>
+                <input type="username" placeholder="Enter username" onChange={(e) => setUsername(e.target.value)} />
+                </div>
+                <div className = "input-password">
+                <label>Password</label>
+                <input type="password" placeholder="Enter password" onChange={(e) => setPassword(e.target.value)} />
+                </div>
+                <p>{error}</p>
+                <button disabled={!isFormValid()} type="submit">Submit</button>
+            </form>
+        </div>
     );
 }
