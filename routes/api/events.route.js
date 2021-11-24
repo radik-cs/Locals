@@ -1,28 +1,23 @@
-
 const express = require("express");
 const MongoUtil = require('../../db/MongoUtil')
 
 const router = express.Router();
 
-router.post("/", async (req, res) => {
-    //validate event format
-    let errors = {}
-    errors.success = true;
-    //query database
-    const db = MongoUtil.getDB();
-    const events = await db.collection('events');
-    //should check if there username exists here
-    const result = await events.insertOne(req.body)
-    return res.json(errors)
+
+//should do more error checking here
+router.put("/", async (req, res) => {
+    let errors = {success: true, message : ""}
+    let eventsColl = MongoUtil.getDB().collection('events')
+    eventsColl.insertOne(req.body).then(() => {
+        res.send(errors)
+    })
 });
 
-router.post("/get-events", async (req, res) => {
-    const db = MongoUtil.getDB();
-    const events = await db.collection('events')
-    const username = req.body.username
-    let query = { username: `${username}` }
-    const result = await events.find(query).toArray()
-    return res.json(result)
+router.get("/", async (req, res) => {
+    let eventsColl = MongoUtil.getDB().collection('events')
+    eventsColl.find(req.query).toArray().then(result => {
+        res.send(result)
+    })
 });
 
 module.exports = router;

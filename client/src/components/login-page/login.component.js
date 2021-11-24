@@ -21,7 +21,7 @@ export default function Login(props) {
     return (
         <div>
             <h1>Locals</h1>
-            {/*tab buttons - renders the tab buttons based on the tabList array defined above*/
+            {/*header - tab buttons - renders the tab buttons based on the tabList array defined above*/
                 tabList.map((tab, i) =>
                     <button key={i} onClick={() => setCurrentTab(tab.name)}>
                         {tab.label}

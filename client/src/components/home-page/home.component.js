@@ -3,19 +3,16 @@ import { useState } from 'react'
 import { useLocation } from "react-router-dom";
 
 //components
-import CreateEvent from "./createEvent.component"
 import MyEvents from "./myevents.component"
+//search events
+//My RSVPs
+
 
 export default function Home(props) {
     const location = useLocation()
     const username = location.state.username
-    const [currentTab, setCurrentTab] = useState("")
+    const [currentTab, setCurrentTab] = useState("my-events")
     const tabList = [
-        {
-            name: "create-event",
-            label: "Create Event",
-            content: <CreateEvent username={username} setCurrentTab={setCurrentTab}/>
-        },
         {
             name: "my-events",
             label: "My Events",
@@ -32,7 +29,6 @@ export default function Home(props) {
             content: <h1>My RSVPs</h1>
         }
     ]
-
     return (
         <div>
             {/*header - has the tab buttons and username*/

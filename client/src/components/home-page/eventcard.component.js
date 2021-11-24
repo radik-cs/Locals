@@ -2,11 +2,14 @@ export default function EventCard(props) {
     return (
         <div>
             <ul>
-                <li>Event Name: {props.event.name}</li>
-                <li>Event Location: {props.event.location}</li>
-                <li>Event Date and Time: {props.event.datetime}</li>
-                <li>Event Description: {props.event.description}</li>
+                <li>Host: {props.event.host}</li>
+                <li>Name: {props.event.name}</li>
+                <li>Location: {props.event.location}</li>
+                <li>Date and Time: {props.event.datetime}</li>
+                <li>Description: {props.event.description}</li>
             </ul>
+            <button>Edit</button>
+            <button>Delete</button>
         </div>
     )
 }

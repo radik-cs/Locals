@@ -13,10 +13,12 @@ export default function SignIn() {
         e.preventDefault()
 
         const user = { username, password }
+        //maybe use a loading animation while we wait for the server
         let response = await axios.post("/api/login/sign-in", user)
 
+        //should probably do some better error handling here
         if (response.data.success)
-            navigate(`/${username}`, {state:{username:`${username}`}});
+            navigate(`/${username}`, { state: { username: `${username}` } });
         else
             setError(response.data.message)
     }
@@ -29,10 +31,10 @@ export default function SignIn() {
             <h3>Sign In</h3>
 
             <label>Username</label>
-            <input type="username" placeholder="Enter username" onChange={(e) => setUsername(e.target.value)}/>
+            <input type="username" placeholder="Enter username" onChange={(e) => setUsername(e.target.value)} />
 
             <label>Password</label>
-            <input type="password" placeholder="Enter password" onChange={(e) => setPassword(e.target.value)}/>
+            <input type="password" placeholder="Enter password" onChange={(e) => setPassword(e.target.value)} />
 
             <p>{error}</p>
             <button disabled={!isFormValid()} type="submit">Submit</button>
