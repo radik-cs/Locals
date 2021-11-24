@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import "./login-page.css"
 const axios = require("axios")
 
 export default function SignUp() {
@@ -29,20 +30,26 @@ export default function SignUp() {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <h3>Sign Up</h3>
+        <div className = "signin">
+            <form onSubmit={handleSubmit}>
+                <h3>Sign Up</h3>
+                
+                <div className = "input-username">
+                <label>Username</label>
+                <input type="username" placeholder="Choose username" onChange={(e) => setUsername(e.target.value)} />
+                </div>
+                <div className = "input-username">
+                <label>Password</label>
+                <input type="password" placeholder="Enter password" onChange={(e) => setPassword(e.target.value)} />
+                </div>
 
-            <label>Username</label>
-            <input type="username" placeholder="Choose username" onChange={(e) => setUsername(e.target.value)} />
-
-            <label>Password</label>
-            <input type="password" placeholder="Enter password" onChange={(e) => setPassword(e.target.value)} />
-
-            <label>Re-enter Password</label>
-            <input type="password" placeholder="Re-enter password" onChange={(e) => { setPassword2(e.target.value) }} />
-
-            <p>{error}</p>
-            <button disabled={!isFormValid()} type="submit">Sign Up</button>
-        </form>
+                <div className = "repeat-password">
+                <label>Re-enter Password</label>
+                <input type="password" placeholder="Re-enter password" onChange={(e) => { setPassword2(e.target.value) }} />
+                </div>
+                <p>{error}</p>
+                <button disabled={!isFormValid()} type="submit">Sign Up</button>
+            </form>
+        </div>
     );
 }

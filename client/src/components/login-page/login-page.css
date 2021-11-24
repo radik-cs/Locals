@@ -1,0 +1,75 @@
+.login-header{
+    background-color: #0096FF;
+    padding-top: 10px;
+    
+    
+    font-family: sans-serif;
+    overflow: hidden;
+    
+    
+}
+
+
+.login-header h1{
+    padding-left: 50px;
+    color: white;
+}
+
+.login-header button{
+    background-color:#808080;
+    color: white;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    
+    padding: 10px 0px 10px 10px;
+    width: 50%;
+    font-size: 16px;
+    transition: .2s;
+    opacity: .9;
+    
+}
+
+.login-header button:hover {
+    background-color: #777;
+    opacity: 1;
+  }
+
+.signin{
+    font-family: sans-serif;
+    background-color: #0096FF;
+    padding: 10px 10px 10px 10px;
+    margin: auto;
+    margin-top: 5%;
+    border-radius: 10px;
+    text-align: center;
+    width: max-content;
+    
+    box-shadow:  0 10px 6px -6px #777;
+    
+    
+}
+
+.signin label{
+    padding-right: 5px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+
+
+.signin .input-username{
+    padding-bottom: 10px;
+    text-align: right;
+}
+
+.signin .input-password{
+    padding-bottom: 10px;
+    text-align: right;
+}
+
+.signin .repeat-password{
+    text-align: right;
+    
+}

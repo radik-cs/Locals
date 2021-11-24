@@ -31,22 +31,25 @@ export default function Home(props) {
     ]
     return (
         <div>
-            <h1>@{username}</h1>
-            {/*header - has the tab buttons and username*/
-                tabList.map((tab, i) =>
-                    <button key={i} onClick={() => setCurrentTab(tab.name)}>
-                        {tab.label}
-                    </button>
-                )
-            }
-            {/*home page body - renders the body based on the selected tab and the tabList array defined above*/
-                tabList.map((tab, i) => {
-                    if (tab.name === currentTab)
-                        return <div key={i}>{tab.content}</div>;
-                    else
-                        return null;
-                })
-            }
+            <div className = "tab-list">
+                {/*header - has the tab buttons and username*/
+                    tabList.map((tab, i) =>
+                        <button key={i} onClick={() => setCurrentTab(tab.name)}>
+                            {tab.label}
+                        </button>
+                    )
+                }
+            </div>
+            <div className = "component-title">
+                {/*home page body - renders the body based on the selected tab and the tabList array defined above*/
+                    tabList.map((tab, i) => {
+                        if (tab.name === currentTab)
+                            return <div key={i}>{tab.content}</div>;
+                        else
+                            return null;
+                    })
+                }
+            </div>
         </div>
     );
 }
