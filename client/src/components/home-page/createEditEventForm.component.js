@@ -37,7 +37,7 @@ export default function CreateEditEventForm(props) {
     }
 
     return (
-        <div>
+        <div className = "eventWindow">
             <button onClick={() => setIsModalOpen(false)}>Exit</button>
             <form onSubmit={handleSubmit}>
                 <h3>{title}</h3>
