@@ -1,6 +1,7 @@
 
 import { useState } from 'react'
 import { useLocation } from "react-router-dom";
+import './home-page.css'
 
 //components
 import MyEvents from "./myevents.component"
