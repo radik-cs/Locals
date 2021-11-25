@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import './home-page.css'
 
 //components
 import Modal from 'react-modal';

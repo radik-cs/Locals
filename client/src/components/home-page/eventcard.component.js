@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import './home-page.css'
 
 //components
 import CreateEditEventForm from "./createEditEventForm.component"
