@@ -17,7 +17,7 @@ export default function EventCard(props) {
     }
 
     return (
-        <div>
+        <div className = "eventCard">
             <Modal ariaHideApp={false} isOpen={isModalOpen}>
                 <CreateEditEventForm updateMyEvents={updateMyEvents} event={props.event} setIsModalOpen={setIsModalOpen} />
             </Modal>

@@ -31,7 +31,7 @@ export default function Home(props) {
         }
     ]
     return (
-        <div>
+        <div className = "homePage">
             <div className = "tab-list">
                 {/*header - has the tab buttons and username*/
                     tabList.map((tab, i) =>
