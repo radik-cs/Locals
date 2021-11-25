@@ -22,7 +22,7 @@ export default function EventCard(props) {
             <Modal ariaHideApp={false} isOpen={isModalOpen}>
                 <CreateEditEventForm updateMyEvents={updateMyEvents} event={props.event} setIsModalOpen={setIsModalOpen} />
             </Modal>
-            <ul>
+            <ul className = "eventList">
                 <li>Host: {props.event.host}</li>
                 <li>Name: {props.event.name}</li>
                 <li>Location: {props.event.location}</li>

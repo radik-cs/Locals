@@ -2,24 +2,57 @@
 {
 	background-color: #0096FF;
     font-family: sans-serif;
+    height: 100%;
 }
 
 .homePage
 {
 	background-color: #0096FF;
     font-family: sans-serif;
+    height: 1000px;
 }
 
-.h1
+.MyEventHeader
 {
-	padding: 10px;
-	color: "white";
+    padding-left: 50px;
+	background-color: #0096FF;
+	color: #FFFFFF;
 	font-family: sans-serif;
 }
 
 .eventCard
 {
-	padding: 100px;
-	background-color: "white";
+	list-style-type: none;
+	padding: 10px;
+	margin: auto;
+	margin-bottom: 20px;
+	width: 90%;
+	align: center;
+	background-color: #FFFFFF;
 	font-family: sans-serif;
+	overflow: hidden;
+    border-radius: 10px;
+}
+
+.eventArgument
+{
+	margin-top: 10px;
+	position: absolute;
+	margin-right: 20px;
+}
+
+.eventCard button
+{
+	margin-top: 10px;
+}
+
+.AddEventButton button
+{
+	margin: 10px;
+	padding: 10px;
+}
+
+ul
+{
+	list-style-type: none;
 }
