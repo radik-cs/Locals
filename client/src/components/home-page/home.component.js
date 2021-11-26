@@ -5,6 +5,7 @@ import './home-page.css'
 
 //components
 import MyEvents from "./myevents.component"
+import SearchEvents from "./eventSearch.component"
 //search events
 //My RSVPs
 
@@ -21,7 +22,7 @@ export default function Home(props) {
         {
             name: "search-events",
             label: "Search Events",
-            content: <h1>search events tab</h1>
+            content: <SearchEvents username={username} />
         },
         {
             name: "my-rsvps",

@@ -26,7 +26,8 @@ router.put("/", (req, res) => {
 
 // get events
 router.get("/", (req, res) => {
-    MongoUtil.getDB().collection('events').find(req.query).toArray().then(result => {
+    let query = req.query.search ? {name: req.query.search} : req.query
+    MongoUtil.getDB().collection('events').find(query).toArray().then(result => {
         res.send(result)
     })
 });
