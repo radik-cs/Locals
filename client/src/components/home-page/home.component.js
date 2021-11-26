@@ -7,7 +7,6 @@ import MyEvents from "./myevents.component"
 //search events
 //My RSVPs
 
-
 export default function Home(props) {
     const location = useLocation()
     const username = location.state.username
@@ -29,6 +28,7 @@ export default function Home(props) {
             content: <h1>My RSVPs</h1>
         }
     ]
+    
     return (
         <div>
             <div className = "tab-list">
