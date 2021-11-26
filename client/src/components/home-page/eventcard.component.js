@@ -16,10 +16,13 @@ export default function EventCard(props) {
     //conditional rendering of the edit and delete buttons, only render if the current user is the host of the event
     var editButton = undefined
     var deleteButton = undefined
+    var RSVPbutton = undefined
     if (username === event.host){
         editButton = <button onClick={handleEdit}>Edit</button>
         deleteButton = <button onClick={handleDelete}>Delete</button>
     }
+    else
+        RSVPbutton = <button>RSVP</button>
 
     function handleEdit() {
         setIsModalOpen(true)
@@ -44,6 +47,7 @@ export default function EventCard(props) {
             </ul>
             {editButton}
             {deleteButton}
+            {RSVPbutton}
         </div>
     )
 }
