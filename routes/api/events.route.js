@@ -7,17 +7,27 @@ const router = express.Router();
 // add or update event
 router.put("/", (req, res) => {
     let errors = { success: true, message: "" }
+    console.log(req.body)
 
-    let query = { _id: req.body._id ? new ObjectID(req.body._id) : new ObjectID() }
+    let query = {_id: undefined}
     let update = {
         $set: {
-            host: req.body.host,
-            name: req.body.name,
-            location: req.body.location,
-            datetime: req.body.datetime,
-            description: req.body.description
-        },
+            host: req.body.event.host,
+            name: req.body.event.name,
+            location: req.body.event.location,
+            datetime: req.body.event.datetime,
+            description: req.body.event.description,
+        }
     }
+    if (req.body.event._id){
+        query._id =  new ObjectID(req.body.event._id)
+        if (req.body.guest)
+            update.$push = {RSVPs: req.body.guest}
+    }else{
+        query._id = new ObjectID()
+        update.$set.RSVPs =  []
+    }
+    console.log(update)
     let options = { upsert: true }
     MongoUtil.getDB().collection('events').updateOne(query, update, options).then((result) => {
         res.send(errors)

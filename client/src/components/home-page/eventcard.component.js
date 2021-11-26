@@ -12,18 +12,29 @@ export default function EventCard(props) {
     const event = props.event
     const updateMyEvents = props.updateMyEvents
     const [isModalOpen, setIsModalOpen] = useState(false)
+    const [isRSVPDisabled, setIsRSVPDisabled] = useState(false)
 
     //conditional rendering of the edit and delete buttons, only render if the current user is the host of the event
     var editButton = undefined
     var deleteButton = undefined
     var RSVPbutton = undefined
-    if (username === event.host){
+    if (username === event.host) {
         editButton = <button onClick={handleEdit}>Edit</button>
         deleteButton = <button onClick={handleDelete}>Delete</button>
     }
     else
-        RSVPbutton = <button>RSVP</button>
+        RSVPbutton = <button disabled={isRSVPDisabled} onClick={handleRSVP}>RSVP</button>
+    if (event.RSVPs.includes(username))
+        RSVPbutton = <p>RSVP'd</p>
 
+    function handleRSVP() {
+        if (!event.RSVPs.includes(username)) {
+            axios.put("/api/events", { event: props.event, guest: `${username}` }).then(res => {
+                event.RSVPs.push(username)
+                setIsRSVPDisabled(true)
+            })
+        }
+    }
     function handleEdit() {
         setIsModalOpen(true)
     }

@@ -35,7 +35,8 @@ export default function EventSearch(props) {
                     events.map((event, idx) =>
                         <li key={idx}>
                             <EventCard key={idx} event={event} username={username} />
-                        </li>)
+                        </li>
+                    )
                 }
             </ul>
         </div>

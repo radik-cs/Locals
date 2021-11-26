@@ -15,6 +15,7 @@ export default function CreateEditEventForm(props) {
     function handleSubmit(e) {
         e.preventDefault()
         //api request
+        let query = {}
         const event = {
             host: `${username}`,
             name,
@@ -24,7 +25,8 @@ export default function CreateEditEventForm(props) {
         }
         if (props.event)
             event._id = props.event._id
-        axios.put("/api/events", event).then(res => {
+        query.event = event
+        axios.put("/api/events", query).then(res => {
             if (res.data.success) {
                 if (props.updateMyEvents)
                     props.updateMyEvents()
