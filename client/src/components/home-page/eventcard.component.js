@@ -15,7 +15,6 @@ export default function EventCard(props) {
         setIsModalOpen(true)
     }
     function handleDelete() {
-        console.log("handle delete")
         axios.delete("/api/events", { params : props.event } ).then( res => {
             updateMyEvents()
         })

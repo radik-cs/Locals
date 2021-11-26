@@ -4,7 +4,7 @@ const ObjectID = require('mongodb').ObjectID;
 
 const router = express.Router();
 
-// add or edit event
+// add or update event
 router.put("/", (req, res) => {
     let errors = { success: true, message: "" }
 
@@ -33,13 +33,10 @@ router.get("/", (req, res) => {
 
 //delete event
 router.delete("/", (req, res) => {
-    let query = {_id : ObjectID(req.query._id)}
+    let query = { _id: ObjectID(req.query._id) }
     MongoUtil.getDB().collection('events').deleteOne(query).then(result => {
-        console.log(result)
         res.send(result)
     })
-
-
 })
 
 module.exports = router
