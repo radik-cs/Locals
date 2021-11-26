@@ -8,32 +8,42 @@ import Modal from 'react-modal';
 const axios = require("axios")
 
 export default function EventCard(props) {
+    const username = props.username
+    const event = props.event
     const updateMyEvents = props.updateMyEvents
     const [isModalOpen, setIsModalOpen] = useState(false)
+
+    //conditional rendering of the edit and delete buttons, only render if the current user is the host of the event
+    var editButton = undefined
+    var deleteButton = undefined
+    if (username === event.host){
+        editButton = <button onClick={handleEdit}>Edit</button>
+        deleteButton = <button onClick={handleDelete}>Delete</button>
+    }
 
     function handleEdit() {
         setIsModalOpen(true)
     }
     function handleDelete() {
-        axios.delete("/api/events", { params : props.event } ).then( res => {
+        axios.delete("/api/events", { params: props.event }).then(res => {
             updateMyEvents()
         })
     }
 
     return (
-        <div className = "eventCard">
+        <div className="eventCard">
             <Modal ariaHideApp={false} isOpen={isModalOpen}>
                 <CreateEditEventForm updateMyEvents={updateMyEvents} event={props.event} setIsModalOpen={setIsModalOpen} />
             </Modal>
-            <ul className = "eventList">
+            <ul className="eventList">
                 <li>Host: {props.event.host}</li>
                 <li>Name: {props.event.name}</li>
                 <li>Location: {props.event.location}</li>
                 <li>Date and Time: {props.event.datetime}</li>
                 <li>Description: {props.event.description}</li>
             </ul>
-            <button onClick={handleEdit}>Edit</button>
-            <button onClick={handleDelete}>Delete</button>
+            {editButton}
+            {deleteButton}
         </div>
     )
 }

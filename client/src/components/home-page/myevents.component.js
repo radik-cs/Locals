@@ -39,7 +39,7 @@ export default function MyEvents(props) {
                 {
                     events.map((event, idx) =>
                         <li key={idx}>
-                            <EventCard updateMyEvents={updateMyEvents} key={idx} event={event} />
+                            <EventCard updateMyEvents={updateMyEvents} key={idx} event={event} username={username} />
                         </li>)
                 }
             </ul>
