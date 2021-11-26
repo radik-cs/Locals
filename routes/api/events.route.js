@@ -1,6 +1,6 @@
 const express = require("express");
 const MongoUtil = require('../../db/MongoUtil')
-const ObjectID = require('mongodb').ObjectId;
+const ObjectID = require('mongodb').ObjectID;
 
 const router = express.Router();
 
@@ -26,15 +26,20 @@ router.put("/", (req, res) => {
 
 // get events
 router.get("/", (req, res) => {
-    let eventsColl = MongoUtil.getDB().collection('events')
-    eventsColl.find(req.query).toArray().then(result => {
+    MongoUtil.getDB().collection('events').find(req.query).toArray().then(result => {
         res.send(result)
     })
 });
 
 //delete event
 router.delete("/", (req, res) => {
-    console.log("tryna delete some shit, huh?")
+    let query = {_id : ObjectID(req.query._id)}
+    MongoUtil.getDB().collection('events').deleteOne(query).then(result => {
+        console.log(result)
+        res.send(result)
+    })
+
+
 })
 
-module.exports = router;
+module.exports = router

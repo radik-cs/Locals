@@ -16,6 +16,9 @@ export default function EventCard(props) {
     }
     function handleDelete() {
         console.log("handle delete")
+        axios.delete("/api/events", { params : props.event } ).then( res => {
+            updateMyEvents()
+        })
     }
 
     return (
