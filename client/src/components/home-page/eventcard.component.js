@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import './home-page.css'
 
 //components
 import CreateEditEventForm from "./createEditEventForm.component"
@@ -17,11 +18,11 @@ export default function EventCard(props) {
     }
 
     return (
-        <div>
+        <div className = "eventCard">
             <Modal ariaHideApp={false} isOpen={isModalOpen}>
                 <CreateEditEventForm updateMyEvents={updateMyEvents} event={props.event} setIsModalOpen={setIsModalOpen} />
             </Modal>
-            <ul>
+            <ul className = "eventList">
                 <li>Host: {props.event.host}</li>
                 <li>Name: {props.event.name}</li>
                 <li>Location: {props.event.location}</li>

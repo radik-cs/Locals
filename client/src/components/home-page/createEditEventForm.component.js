@@ -1,4 +1,5 @@
 import { useState } from "react";
+import './home-page.css'
 
 const axios = require("axios")
 
@@ -37,7 +38,7 @@ export default function CreateEditEventForm(props) {
     }
 
     return (
-        <div>
+        <div className = "eventWindow">
             <button onClick={() => setIsModalOpen(false)}>Exit</button>
             <form onSubmit={handleSubmit}>
                 <h3>{title}</h3>

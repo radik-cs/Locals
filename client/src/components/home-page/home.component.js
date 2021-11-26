@@ -1,6 +1,7 @@
 
 import { useState } from 'react'
 import { useLocation } from "react-router-dom";
+import './home-page.css'
 
 //components
 import MyEvents from "./myevents.component"
@@ -30,7 +31,7 @@ export default function Home(props) {
     ]
     
     return (
-        <div>
+        <div className = "homePage">
             <div className = "tab-list">
                 {/*header - has the tab buttons and username*/
                     tabList.map((tab, i) =>
