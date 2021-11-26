@@ -5,7 +5,7 @@
     
     font-family: sans-serif;
     overflow: hidden;
-    
+    box-shadow:  0 10px 6px -6px lightgray ;
     
 }
 
@@ -13,6 +13,7 @@
 .login-header h1{
     padding-left: 50px;
     color: white;
+    
 }
 
 .login-header button{
@@ -45,7 +46,7 @@
     border-radius: 10px;
     text-align: center;
     width: max-content;
-    
+    color: white;
     box-shadow:  0 10px 6px -6px #777;
     
     
