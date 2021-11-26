@@ -12,7 +12,7 @@ export default function CreateEditEventForm(props) {
     const username = props.username ? props.username : props.event.host
     const title = props.event === undefined ? "Create Event" : "Edit Event"
 
-    async function handleSubmit(e) {
+    function handleSubmit(e) {
         e.preventDefault()
         //api request
         const event = {
@@ -24,21 +24,22 @@ export default function CreateEditEventForm(props) {
         }
         if (props.event)
             event._id = props.event._id
-        let response = await axios.put("/api/events", event)
-        if (response.data.success){
-            if (props.updateMyEvents)
-                props.updateMyEvents()
-            setIsModalOpen(false)
-        }
-        else
-            alert(`event creation unsuccessful - ${response.data}`)
+        axios.put("/api/events", event).then(res => {
+            if (res.data.success) {
+                if (props.updateMyEvents)
+                    props.updateMyEvents()
+                setIsModalOpen(false)
+            }
+            else
+                alert(`event creation unsuccessful - ${res.data}`)
+        })
     }
     function isFormValid() {
         return name.length > 0 && location.length > 0 && datetime.length > 0 && description.length > 0
     }
 
     return (
-        <div className = "eventWindow">
+        <div className="eventWindow">
             <button onClick={() => setIsModalOpen(false)}>Exit</button>
             <form onSubmit={handleSubmit}>
                 <h3>{title}</h3>

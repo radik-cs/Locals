@@ -30,8 +30,8 @@ export default function MyEvents(props) {
 
     return (
         <div>
-            <h1 className = "MyEventHeader">My Events</h1>
-            <button className = "AddEventButton" onClick={() => { setIsModalOpen(true) }}>Add Event</button>
+            <h1 className="MyEventHeader">My Events</h1>
+            <button className="AddEventButton" onClick={() => { setIsModalOpen(true) }}>Add Event</button>
             <Modal ariaHideApp={false} isOpen={isModalOpen}>
                 <CreateEditEventForm username={username} setIsModalOpen={setIsModalOpen} />
             </Modal>

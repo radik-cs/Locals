@@ -32,4 +32,9 @@ router.get("/", (req, res) => {
     })
 });
 
+//delete event
+router.delete("/", (req, res) => {
+    console.log("tryna delete some shit, huh?")
+})
+
 module.exports = router;

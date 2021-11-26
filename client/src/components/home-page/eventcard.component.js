@@ -5,13 +5,14 @@ import './home-page.css'
 import CreateEditEventForm from "./createEditEventForm.component"
 import Modal from 'react-modal';
 
+const axios = require("axios")
+
 export default function EventCard(props) {
     const updateMyEvents = props.updateMyEvents
     const [isModalOpen, setIsModalOpen] = useState(false)
 
     function handleEdit() {
         setIsModalOpen(true)
-        console.log("handle edit")
     }
     function handleDelete() {
         console.log("handle delete")
