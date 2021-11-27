@@ -5,7 +5,7 @@ import './home-page.css'
 
 //components
 import MyEvents from "./myevents.component"
-import SearchEvents from "./eventSearch.component"
+import SearchEvents from "./searchEvents"
 import MyRSVPs from "./myRSVPs.component"
 //My RSVPs
 

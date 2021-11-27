@@ -26,7 +26,7 @@ export default function MyEvents(props) {
         axios.get("/api/events", { params: query }).then(res => {
             setEvents(res.data)
         })
-    }, [username, isModalOpen])
+    }, [isModalOpen, username])
 
     return (
         <div>

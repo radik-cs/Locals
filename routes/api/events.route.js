@@ -1,6 +1,7 @@
 const express = require("express");
 const MongoUtil = require('../../db/MongoUtil')
 const ObjectID = require('mongodb').ObjectID;
+const qr = require('qrcode')
 
 const router = express.Router();
 
@@ -8,7 +9,6 @@ const router = express.Router();
 //TODO - clean this up for god's sake.
 router.put("/", (req, res) => {
     let errors = { success: true, message: "" }
-
     let query = {_id: undefined}
     let update = {
         $set: {
@@ -25,9 +25,7 @@ router.put("/", (req, res) => {
             update.$push = {RSVPs: req.body.guest}
             let query1 = {username: req.body.guest}
             let update1 = {$push: {RSVPs: ObjectID(req.body.event._id)}}
-            console.log(query1)
             MongoUtil.getDB().collection('users').updateOne(query1, update1,{upsert:false}).then((result) => {
-                console.log(result)
             })
         }
     }else{
@@ -54,6 +52,14 @@ router.delete("/", (req, res) => {
     MongoUtil.getDB().collection('events').deleteOne(query).then(result => {
         res.send(result)
     })
+})
+
+router.get("/:id", (req, res) => {
+    console.log(req.params.id)
+    qr.toDataURL("bog bog", (err, src) => {
+        console.log(src)
+        res.send(src)
+    });
 })
 
 module.exports = router

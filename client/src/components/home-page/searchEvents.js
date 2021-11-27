@@ -12,7 +12,6 @@ export default function EventSearch(props) {
 
     function handleSearch(e) {
         e.preventDefault()
-        console.log("made search")
         let query = { search: `${search}` }
         axios.get("/api/events", { params: query }).then(res => {
             setEvents(res.data)

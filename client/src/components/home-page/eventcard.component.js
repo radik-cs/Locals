@@ -12,26 +12,33 @@ export default function EventCard(props) {
     const event = props.event
     const updateMyEvents = props.updateMyEvents
     const [isModalOpen, setIsModalOpen] = useState(false)
-    const [isRSVPDisabled, setIsRSVPDisabled] = useState(false)
+    const [RSVPFlag, setRSVPFlag] = useState(false)
 
-    //conditional rendering of the edit and delete buttons, only render if the current user is the host of the event
-    var editButton = undefined
-    var deleteButton = undefined
-    var RSVPbutton = undefined
+
+    //conditional rendering of editEvent, deleteEvent, and RSVPEvent capailities
+    var editEvent = undefined
+    var deleteEvent = undefined
+    var RSVPEvent = undefined
     if (username === event.host) {
-        editButton = <button onClick={handleEdit}>Edit</button>
-        deleteButton = <button onClick={handleDelete}>Delete</button>
+        //called from myEvents component or is a searchEvent result that is the user's event  - should display edit/delete buttton
+        editEvent = <button onClick={handleEdit}>Edit</button>
+        deleteEvent = <button onClick={handleDelete}>Delete</button>
     }
-    else
-        RSVPbutton = <button onClick={handleRSVP}>RSVP</button>
-    if (event.RSVPs.includes(username))
-        RSVPbutton = <p>RSVP'd</p>
+    else {
+        // is called from MyRSVPs or is from a searchEvent result that is NOT the user's event
+        // - dislay RSVP button, RSVP'd - event not started, or QR code
+        if (!event.RSVPs.includes(username))
+            RSVPEvent = <button onClick={handleRSVP}>RSVP</button>
+        else
+            RSVPEvent = <p>RSVP'd</p>
+    }
 
     function handleRSVP() {
         if (!event.RSVPs.includes(username)) {
             axios.put("/api/events", { event: props.event, guest: `${username}` }).then(res => {
                 event.RSVPs.push(username)
-                setIsRSVPDisabled(true)
+                //forces the page to re render
+                setRSVPFlag(!RSVPFlag)
             })
         }
     }
@@ -56,9 +63,9 @@ export default function EventCard(props) {
                 <li>Date and Time: {props.event.datetime}</li>
                 <li>Description: {props.event.description}</li>
             </ul>
-            {editButton}
-            {deleteButton}
-            {RSVPbutton}
+            {editEvent}
+            {deleteEvent}
+            {RSVPEvent}
         </div>
     )
 }

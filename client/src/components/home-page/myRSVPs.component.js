@@ -10,10 +10,10 @@ export default function MyRSVPs(props) {
     const [events, setEvents] = useState([])
 
     useEffect(() => {
-        axios.get("/api/events", { RSVPs: username }).then(res => {
+        axios.get("/api/events", {params:{ RSVPs: username }}).then(res => {
             setEvents(res.data)
         })
-    }, [])
+    }, [username])
 
     return (
         <div>
