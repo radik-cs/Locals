@@ -55,7 +55,11 @@ export default function CreateEditEventForm(props) {
                 </div>
                 <div classType="eventDataDiv">
                     <label className = "eventArgument">Date/Time:</label>
-                    <input type="text" value={datetime} placeholder="Enter the date and time" onChange={(e) => setDateTime(e.target.value)} />
+                    <input type="datetime-local" value={datetime} placeholder="Enter the date and time" onChange={(e) => setDateTime(e.target.value)} />
+                </div>
+                <div classType="eventDataDiv">
+                    <label className = "eventArgument">Ending Date/Time:</label>
+                    <input type="datetime-local" value={datetime} placeholder="Enter the date and time" onChange={(e) => setDateTime(e.target.value)} />
                 </div>
                 <div classType="eventDataDiv">
                     <label className = "eventArgument">Description:</label>
