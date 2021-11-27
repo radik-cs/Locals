@@ -36,7 +36,7 @@ export default function Home(props) {
             <div className = "tab-list">
                 {/*header - has the tab buttons and username*/
                     tabList.map((tab, i) =>
-                        <button key={i} onClick={() => setCurrentTab(tab.name)}>
+                        <button className = "tabs" key={i} onClick={() => setCurrentTab(tab.name)}>
                             {tab.label}
                         </button>
                     )

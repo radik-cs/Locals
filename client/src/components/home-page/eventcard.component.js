@@ -21,8 +21,8 @@ export default function EventCard(props) {
     var RSVPEvent = undefined
     if (username === event.host) {
         //called from myEvents component or is a searchEvent result that is the user's event  - should display edit/delete buttton
-        editEvent = <button onClick={handleEdit}>Edit</button>
-        deleteEvent = <button onClick={handleDelete}>Delete</button>
+        editEvent = <button className="EventCardButton" onClick={handleEdit}>Edit</button>
+        deleteEvent = <button className="EventCardButton" onClick={handleDelete}>Delete</button>
     }
     else {
         // is called from MyRSVPs or is from a searchEvent result that is NOT the user's event

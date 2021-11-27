@@ -42,24 +42,27 @@ export default function CreateEditEventForm(props) {
 
     return (
         <div className="eventWindow">
-            <button onClick={() => setIsModalOpen(false)}>Exit</button>
+            <button className = "ExitButton" onClick={() => setIsModalOpen(false)}>Exit</button>
+            <h3>{title}</h3>
             <form onSubmit={handleSubmit}>
-                <h3>{title}</h3>
-
-                <label>Name</label>
-                <input type="text" value={name} placeholder="Enter event name" onChange={(e) => setName(e.target.value)} />
-
-                <label>Location</label>
-                <input type="text" value={location} placeholder="Enter location" onChange={(e) => setLocation(e.target.value)} />
-
-                <label>Date/Time</label>
-                <input type="text" value={datetime} placeholder="Enter the date and time" onChange={(e) => setDateTime(e.target.value)} />
-
-                <label>Description</label>
-                <input type="text" value={description} placeholder="Enter the date and time" onChange={(e) => setDescription(e.target.value)} />
-
+                <div classType="eventDataDiv">
+                    <label className = "eventArgument">Name:</label>
+                    <input type="text" value={name} placeholder="Enter event name" onChange={(e) => setName(e.target.value)} />
+                </div>
+                <div classType="eventDataDiv">
+                    <label className = "eventArgument">Location:</label>
+                    <input type="text" value={location} placeholder="Enter location" onChange={(e) => setLocation(e.target.value)} />
+                </div>
+                <div classType="eventDataDiv">
+                    <label className = "eventArgument">Date/Time:</label>
+                    <input type="text" value={datetime} placeholder="Enter the date and time" onChange={(e) => setDateTime(e.target.value)} />
+                </div>
+                <div classType="eventDataDiv">
+                    <label className = "eventArgument">Description:</label>
+                    <input type="text" value={description} placeholder="Enter the date and time" onChange={(e) => setDescription(e.target.value)} />
+                </div>
                 <p> </p>
-                <button disabled={!isFormValid()} type="submit">Submit</button>
+                <button className = "ExitButton" disabled={!isFormValid()} type="submit">Submit</button>
             </form>
         </div>
     );

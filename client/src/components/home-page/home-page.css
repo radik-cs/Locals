@@ -31,14 +31,18 @@
 	background-color: #FFFFFF;
 	font-family: sans-serif;
 	overflow: hidden;
-    border-radius: 10px;
+	border-color: black;
+	border-style: solid;
+	border-width: 2px;
+  border-radius: 10px;
 }
 
 .eventArgument
 {
-	margin-top: 10px;
-	position: absolute;
 	margin-right: 20px;
+	margin-left: 50px;
+	color: white;
+	font-family: sans-serif;
 }
 
 .eventCard button
@@ -46,13 +50,88 @@
 	margin-top: 10px;
 }
 
-.AddEventButton button
+.AddEventButton
 {
 	margin: 10px;
 	padding: 10px;
+	background-color: white;
 }
 
 ul
 {
 	list-style-type: none;
+}
+
+.tabs{
+    background-color:#808080;
+    color: white;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    
+    padding: 10px 0px 10px 10px;
+    margin-bottom: 20px;
+    width: 33.33%;
+    font-size: 16px;
+    transition: .2s;
+    opacity: .9;
+}
+
+.tabs:hover
+{
+    background-color: #777;
+    opacity: 1;
+}
+
+.EventCardButton
+{
+	  background-color:#808080;
+    color: white;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    
+    padding: 10px 0px 10px 10px;
+    width: 50%;
+    font-size: 16px;
+    transition: .2s;
+    opacity: .9;
+}
+
+.EventCardButton:hover
+{
+    background-color: #777;
+    opacity: 1;
+}
+
+.ExitButton
+{
+	margin: 10px;
+	padding: 10px;
+	background-color: white;
+}
+
+.ExitButton:hover
+{
+    background-color: #777;
+    opacity: 1;
+}
+
+h3
+{
+  padding-left: 50px;
+	background-color: #0096FF;
+	color: #FFFFFF;
+	font-family: sans-serif;
+	font-size: 32px;
+}
+
+.eventDataDiv
+{
+  vertical-align: middle;
+  height: 100px;
+  margin: 10px;
+  padding: 10px;
 }
