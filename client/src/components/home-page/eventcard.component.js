@@ -23,7 +23,7 @@ export default function EventCard(props) {
         deleteButton = <button onClick={handleDelete}>Delete</button>
     }
     else
-        RSVPbutton = <button disabled={isRSVPDisabled} onClick={handleRSVP}>RSVP</button>
+        RSVPbutton = <button onClick={handleRSVP}>RSVP</button>
     if (event.RSVPs.includes(username))
         RSVPbutton = <p>RSVP'd</p>
 

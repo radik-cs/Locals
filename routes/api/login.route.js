@@ -30,7 +30,7 @@ router.post("/", (req, res) => {
             errors.message = "Username taken, please choose a different one."
             errors.success = false
         } else
-            usersColl.insertOne({ username: `${username}`, password: `${password}` })
+            usersColl.insertOne({ username: `${username}`, password: `${password}`, RSVPs: [] })
         res.send(errors)
     })
 });

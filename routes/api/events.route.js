@@ -5,9 +5,9 @@ const ObjectID = require('mongodb').ObjectID;
 const router = express.Router();
 
 // add or update event
+//TODO - clean this up for god's sake.
 router.put("/", (req, res) => {
     let errors = { success: true, message: "" }
-    console.log(req.body)
 
     let query = {_id: undefined}
     let update = {
@@ -21,13 +21,19 @@ router.put("/", (req, res) => {
     }
     if (req.body.event._id){
         query._id =  new ObjectID(req.body.event._id)
-        if (req.body.guest)
+        if (req.body.guest){
             update.$push = {RSVPs: req.body.guest}
+            let query1 = {username: req.body.guest}
+            let update1 = {$push: {RSVPs: ObjectID(req.body.event._id)}}
+            console.log(query1)
+            MongoUtil.getDB().collection('users').updateOne(query1, update1,{upsert:false}).then((result) => {
+                console.log(result)
+            })
+        }
     }else{
         query._id = new ObjectID()
         update.$set.RSVPs =  []
     }
-    console.log(update)
     let options = { upsert: true }
     MongoUtil.getDB().collection('events').updateOne(query, update, options).then((result) => {
         res.send(errors)
