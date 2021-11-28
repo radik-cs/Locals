@@ -7,7 +7,6 @@ import './home-page.css'
 import MyEvents from "./myevents.component"
 import SearchEvents from "./searchEvents"
 import MyRSVPs from "./myRSVPs.component"
-//My RSVPs
 
 export default function Home(props) {
     const location = useLocation()
