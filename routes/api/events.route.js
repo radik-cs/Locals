@@ -20,12 +20,9 @@ router.put("/", (req, res) => {
     }
     let query = {}
     if (_id) {
-        console.log("edit some shit")
         query._id = new ObjectID(_id)
-        if (guest) {
-            console.log(guest)
+        if (guest) 
             update.$push = { RSVPs: guest }
-        }
     }
     else {
         update.$set._id = new ObjectID()
