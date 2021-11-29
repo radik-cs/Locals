@@ -6,14 +6,22 @@ const axios = require('axios')
 
 
 export default function MyRSVPs(props) {
-    const username = props.username
+    const { username } = props
+
     const [events, setEvents] = useState([])
 
     useEffect(() => {
-        axios.get("/api/events", {params:{ RSVPs: username }}).then(res => {
+        let query = { RSVPs: username }
+        axios.get("/api/events", { params: query }).then(res => {
             setEvents(res.data)
         })
     }, [username])
+    function updateEvents() {
+        let query = { RSVPs: username }
+        axios.get("/api/events", { params: query }).then(res => {
+            setEvents(res.data)
+        })
+    }
 
     return (
         <div>
@@ -21,7 +29,7 @@ export default function MyRSVPs(props) {
             {
                 events.map((event, idx) =>
                     <li key={idx}>
-                        <EventCard key={idx} event={event} username={username} />
+                        <EventCard key={idx} username={username} event={event} updateEvents={updateEvents} />
                     </li>
                 )
             }

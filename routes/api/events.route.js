@@ -5,74 +5,67 @@ const qr = require('qrcode')
 
 const router = express.Router();
 
-// add or update event
-//maybe create a call back for the event's date that triggers the generation of all the qr codes.
-//TODO - need to clean this up for god's sake.
+// add or update event - could clean this up
 router.put("/", (req, res) => {
-    let errors = { success: true, message: "" }
-    let query = { _id: undefined }
+    const { host, name, location, startDateTime, endDateTime, description, _id, guest } = req.body
     let update = {
         $set: {
-            host: req.body.event.host,
-            name: req.body.event.name,
-            location: req.body.event.location,
-            startDateTime: new Date(req.body.event.startDateTime),
-            endDateTime: new Date(req.body.event.endDateTime),
-            description: req.body.event.description,
+            host,
+            name,
+            location,
+            startDateTime: new Date(startDateTime),
+            endDateTime: new Date(endDateTime),
+            description
         }
     }
-    if (req.body.event._id) {
-        query._id = new ObjectID(req.body.event._id)
-        if (req.body.guest) {
-            // we are adding a guest to the RSVP list, need to possibly generate a QR code, idk
-            update.$push = { RSVPs: req.body.guest }
-            let query1 = { username: req.body.guest }
-            let update1 = { $push: { RSVPs: ObjectID(req.body.event._id) } }
-            MongoUtil.getDB().collection('users').updateOne(query1, update1, { upsert: false }).then((result) => {
-            })
+    let query = {}
+    if (_id) {
+        console.log("edit some shit")
+        query._id = new ObjectID(_id)
+        if (guest) {
+            console.log(guest)
+            update.$push = { RSVPs: guest }
         }
-    } else {
-        query._id = new ObjectID()
+    }
+    else {
+        update.$set._id = new ObjectID()
         update.$set.RSVPs = []
+        query._id = update.$set._id
     }
+
     let options = { upsert: true }
-    MongoUtil.getDB().collection('events').updateOne(query, update, options).then((result) => {
-        res.send(errors)
+
+    MongoUtil.getDB().collection("events").updateOne(query, update, options).then(result => {
+        res.send()
     })
 });
 
 // get events
 router.get("/", (req, res) => {
-    let query = req.query.search ? { name: req.query.search } : req.query
-    MongoUtil.getDB().collection('events').find(query).toArray().then(result => {
+    MongoUtil.getDB().collection('events').find(req.query).toArray().then(result => {
         res.send(result)
     })
 });
 
 //delete event
 router.delete("/", (req, res) => {
-    let query = { _id: ObjectID(req.query._id) }
+    let query = { _id: new ObjectID(req.query._id) }
     MongoUtil.getDB().collection('events').deleteOne(query).then(result => {
         res.send(result)
     })
 })
 
+//qr code verification
 router.get("/:id", (req, res) => {
     const [event_id, guest_username] = req.params.id.split("-")
-
-    let query = { _id: ObjectID(event_id), RSVPs: `${guest_username}` }
+    let query = { _id: new ObjectID(event_id), RSVPs: `${guest_username}` }
     let update = { $pull: { RSVPs: `${guest_username}` } }
-    let options = { upsert : false}
+    let options = { upsert: false }
     MongoUtil.getDB().collection('events').updateOne(query, update, options).then(result => {
-        if (result.matchedCount == 1 && result.modifiedCount == 1){
-            let query = { username: `${guest_username}`}
-            let update =  { $pull: { RSVPs: `${ObjectID(event_id)}` } }
-            let options = {upsert : false}
-            MongoUtil.getDB().collection('users').updateOne(query, update, options).then(result => {
-                res.send("guest successfully checked in")
-            })
+        if (result.matchedCount == 1 && result.modifiedCount == 1) {
+            res.send("guest successfully checked in")
         }
-        else{
+        else {
             res.send("QR code invalid")
         }
     })

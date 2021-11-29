@@ -10,7 +10,7 @@ import MyRSVPs from "./myRSVPs.component"
 
 export default function Home(props) {
     const location = useLocation()
-    const username = location.state.username
+    const { username } = location.state
     const [currentTab, setCurrentTab] = useState("my-events")
     const tabList = [
         {
@@ -32,6 +32,7 @@ export default function Home(props) {
     
     return (
         <div className = "homePage">
+            <h2>@{username}</h2>
             <div className = "tab-list">
                 {/*header - has the tab buttons and username*/
                     tabList.map((tab, i) =>

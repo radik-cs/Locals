@@ -28,7 +28,7 @@ async function main() {
     app.use("/api/login", loginRoute);
     app.use("/api/events", eventsRoute);
     //main app
-    app.use(express.static(path.resolve(__dirname, "./client/build")));
+    //app.use(express.static(path.resolve(__dirname, "./client/build")));
 
     //setup up api listener
     app.listen(port, () => console.log(`Web server up and running on port ${port} !`));
