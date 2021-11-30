@@ -25,7 +25,7 @@ export default function MyRSVPs(props) {
 
     return (
         <div>
-            <h1>My RSVPs</h1>
+            <h1 className = "RSVPHeader">My RSVPs</h1>
             {
                 events.map((event, idx) =>
                     <li key={idx}>
