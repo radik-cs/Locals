@@ -158,12 +158,6 @@ h3
   opacity: 1;
 }
 
-h2
-{
-	color: white;
-	margin: 20px;
-}
-
 .EventSearchHeader, .MyEventHeader, .RSVPHeader
 {
 	color: white;
@@ -190,4 +184,33 @@ h2
 {
     background-color: #777;
     opacity: 1;
+}
+
+.HomeHeader
+{
+	display: flex;
+	justify-content: space-between;
+}
+
+h2
+{
+	color: white;
+	margin: 20px 30px;
+	padding: 10px 20px;
+	display: inline-block;
+}
+
+.User
+{
+	text-align: left;
+	float: left;
+	vertical-align: middle;
+	padding-right: 20px;
+}
+
+.Logo
+{
+	font-size: 36px;
+	vertical-align: middle;
+	padding-left: 20px;
 }
