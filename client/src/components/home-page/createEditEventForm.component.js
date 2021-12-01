@@ -17,12 +17,13 @@ export default function CreateEditEventForm(props) {
 
     function handleSubmit(e) {
         e.preventDefault()
+        //datetimes are recorded as a string in the client timezone
         const query = {
             host: `${username}`,
             name,
             location,
-            startDateTime,
-            endDateTime,
+            startDateTime: new Date(startDateTime),
+            endDateTime : new Date(endDateTime),
             description
         }
         // if we are doing an update, add the event _id to the query
