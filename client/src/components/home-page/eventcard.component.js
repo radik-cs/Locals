@@ -10,7 +10,7 @@ const qr = require("qrcode")
 
 export default function EventCard(props) {
     const { username, event, updateEvents } = props
-    const url = `${window.location.hostname}:5000/api/events/`
+    const url = `http://${window.location.hostname}:5000/api/events/`
     
     const [isModalOpen, setIsModalOpen] = useState(false)
 
