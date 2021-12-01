@@ -26,7 +26,7 @@ export default function SignUp() {
         })
     }
     function isFormValid() {
-        return username.length > 0 && password.length > 0 && password2.length
+        return username.length > 5 && password.length > 5 && username.length <= 32 && password.length <= 32
     }
 
     return (
