@@ -68,7 +68,7 @@ export default function CreateEditEventForm(props) {
                 </div>
                 <div>
                     <label className="eventArgument">Description:</label>
-                    <input type="text" value={description} placeholder="Enter the date and time" onChange={(e) => setDescription(e.target.value)} />
+                    <input type="text" value={description} placeholder="Enter the description" onChange={(e) => setDescription(e.target.value)} />
                 </div>
                 <p> </p>
                 <button className="ExitButton" disabled={!isFormValid()} type="submit">Submit</button>

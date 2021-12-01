@@ -30,11 +30,11 @@ export default function EventSearch(props) {
     return (
         <div>
             <form onSubmit={handleSearch}>
-                <input type="text" value={search} placeholder="Search Event By Name" onChange={(e) => setSearch(e.target.value)} />
+                <input className = "searchBar" type="text" value={search} placeholder="Search Event By Name" onChange={(e) => setSearch(e.target.value)} />
                 <p> </p>
-                <button disabled={!isFormValid()} type="submit">Search</button>
+                <button className = "searchButton" disabled={!isFormValid()} type="submit">Search</button>
             </form>
-            <h1>events</h1>
+            <h1 className="EventSearchHeader">Events</h1>
             <ul>
                 {
                     events.map((event, idx) =>

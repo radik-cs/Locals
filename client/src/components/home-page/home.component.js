@@ -32,7 +32,10 @@ export default function Home(props) {
     
     return (
         <div className = "homePage">
-            <h2>@{username}</h2>
+            <div className="HomeHeader">
+                <h2 className="Logo">Locals</h2>
+                <h2 className="User">@{username}</h2>
+            </div>
             <div className = "tab-list">
                 {/*header - has the tab buttons and username*/
                     tabList.map((tab, i) =>

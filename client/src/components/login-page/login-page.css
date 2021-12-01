@@ -13,7 +13,8 @@
 .login-header h1{
     padding-left: 50px;
     color: white;
-    
+    font-size: 36px;
+    vertical-align: middle;
 }
 
 .login-header button{

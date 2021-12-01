@@ -26,7 +26,7 @@ export default function EventCard(props) {
     else { // the current user is not the host
         //the user is not on the RSVP list - display the RSVP button
         if (!event.RSVPs.includes(username))
-            RSVPEvent = <button onClick={handleRSVP}>RSVP</button>
+            RSVPEvent = <button className="RSVPButton" onClick={handleRSVP}>RSVP</button>
         // the user is on the RSVP list
         else {
             let dt = new Date()
