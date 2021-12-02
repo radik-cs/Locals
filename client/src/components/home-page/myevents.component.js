@@ -5,6 +5,7 @@ import './home-page.css'
 import Modal from 'react-modal';
 import EventCard from "./eventcard.component"
 import CreateEditEventForm from "./createEditEventForm.component"
+import Table from "./table.png"
 
 const axios = require("axios")
 
@@ -31,8 +32,15 @@ export default function MyEvents(props) {
 
     return (
         <div>
-            <h1 className="MyEventHeader">My Events</h1>
-            <button className="AddEventButton" onClick={() => { setIsModalOpen(true) }}>Add Event</button>
+            <div className="ImageHeader">
+                <img className="Banner" src={Table}/>
+                <div className="HeaderObject">
+                    <h1 className="MyEventHeader">My Events</h1>
+                </div>
+            </div>
+            <div className="CenterDiv">
+                <button className="AddEventButton" onClick={() => { setIsModalOpen(true) }}>Add Event</button>
+            </div>
             <Modal ariaHideApp={false} isOpen={isModalOpen}>
                 <CreateEditEventForm username={username} setIsModalOpen={setIsModalOpen} updateEvents={updateEvents} />
             </Modal>

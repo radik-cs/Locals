@@ -7,7 +7,7 @@
 
 .homePage
 {
-	background-color: #0096FF;
+	background-color: #FFFFFF;
     font-family: sans-serif;
     height: 1000px;
 }
@@ -42,16 +42,26 @@
 	margin-top: 10px;
 }
 
+.CenterDiv
+{
+	text-align: center;
+}
+
 .AddEventButton
 {
-	margin: 10px;
+	margin: auto;
+	overflow: hidden;
+	width: 90%;
 	padding: 10px;
-	background-color: white;
+  font-size: 16px;
+	color: white;
+	background-color: #0096FF;
+  cursor: pointer;
 }
 
 .AddEventButton:hover
 {
-    background-color: #777;
+    background-color: #3EB0FF;
     opacity: 1;
 }
 
@@ -61,7 +71,7 @@ ul
 }
 
 .tabs{
-    background-color:#808080;
+    background-color:#7CC9FF;
     color: white;
     float: left;
     border: none;
@@ -69,7 +79,6 @@ ul
     cursor: pointer;
     
     padding: 10px 0px 10px 10px;
-    margin-bottom: 20px;
     width: 33.33%;
     font-size: 16px;
     transition: .2s;
@@ -78,13 +87,13 @@ ul
 
 .tabs:hover
 {
-    background-color: #777;
+    background-color: #AFDEFF;
     opacity: 1;
 }
 
 .EventCardButton
 {
-	  background-color:#808080;
+	  background-color:#7CC9FF;
     color: white;
     float: left;
     border: none;
@@ -100,7 +109,7 @@ ul
 
 .EventCardButton:hover
 {
-    background-color: #777;
+    background-color: #AFDEFF;
     opacity: 1;
 }
 
@@ -136,37 +145,38 @@ h3
 
 .searchBar
 {
-	margin-left: 10px;
+	display: inline-block;
+	font-size: 14pt;
+	width: 30%;
+	margin-top: 10px;
 }
 
 .searchButton
 {
-	margin: 10px;
-	padding: 10px;
-	background-color: white;
-	align: center;
-	background-color: #FFFFFF;
-	font-family: sans-serif;
-	color: black;
-	border-color: black;
+	display: inline-block;
+	width: 69%;
+	height: 27px;
+	background-color: #0096FF;
+	color: white;
+	background-color: #0096FF;
+  cursor: pointer;
 	overflow: hidden;
 }
 
 .searchButton:hover
 {
-  background-color: #777;
+  background-color: #3EB0FF;
   opacity: 1;
 }
 
 .EventSearchHeader, .MyEventHeader, .RSVPHeader
 {
 	color: white;
-	margin: 20px;
 }
 
 .RSVPButton
 {
-	  background-color:#808080;
+	  background-color:#7CC9FF;
     color: white;
     float: left;
     border: none;
@@ -182,7 +192,7 @@ h3
 
 .RSVPButton:hover
 {
-    background-color: #777;
+    background-color: #AFDEFF;
     opacity: 1;
 }
 
@@ -190,6 +200,7 @@ h3
 {
 	display: flex;
 	justify-content: space-between;
+	background-color: #0096FF;
 }
 
 h2
@@ -213,4 +224,29 @@ h2
 	font-size: 36px;
 	vertical-align: middle;
 	padding-left: 20px;
+}
+
+.Banner
+{
+	width: 100%;
+	opacity: .7;
+}
+
+.HeaderObject
+{
+	position: absolute;
+	font-size: 48px;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+input[type=text]
+{
+		height: 20px;
+    position: relative;
+    border: 2px solid #cdcdcd;
+    border-color: rgba(0, 0, 0, .14);
+    background-color: AliceBlue;
+    font-size: 14px;
 }

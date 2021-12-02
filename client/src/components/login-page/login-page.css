@@ -43,14 +43,15 @@
     background-color: #0096FF;
     padding: 10px 10px 10px 10px;
     margin: auto;
-    margin-top: 5%;
+    margin-top: 10%;
     border-radius: 10px;
     text-align: center;
     width: max-content;
     color: white;
     box-shadow:  0 10px 6px -6px #777;
-    
-    
+    top: 20%;
+    left: 40%;
+    position: absolute;
 }
 
 .signin label{
@@ -73,5 +74,10 @@
 
 .signin .repeat-password{
     text-align: right;
-    
+}
+
+.LoginImage
+{
+    height: 100%;
+    width: 100%;
 }

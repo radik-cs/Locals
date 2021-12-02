@@ -3,6 +3,7 @@ import './login-page.css'
 //components
 import SignIn from "./signin.component"
 import SignUp from "./signup.component"
+import Skyline from "./cityskyline.png"
 
 export default function Login(props) {
     const [currentTab, setCurrentTab] = useState("signin")
@@ -31,14 +32,17 @@ export default function Login(props) {
                     )
                 }
             </div>
-            {/*login page body - renders the body based on the selected tab and the tabList array defined above*/
-                tabList.map((tab, i) => {
-                    if (tab.name === currentTab)
-                        return <div key={i}>{tab.content}</div>;
-                    else
-                        return null;
-                })
-            }
+            <div className="Background">
+                <img className="LoginImage" src={Skyline}/>
+                {/*login page body - renders the body based on the selected tab and the tabList array defined above*/
+                    tabList.map((tab, i) => {
+                        if (tab.name === currentTab)
+                            return <div key={i}>{tab.content}</div>;
+                        else
+                            return null;
+                    })
+                }
+            </div>
         </div>
     );
 

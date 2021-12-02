@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 
 import EventCard from "./eventcard.component"
+import Fireworks from "./fireworks.png"
 
 const axios = require('axios')
 
@@ -25,7 +26,12 @@ export default function MyRSVPs(props) {
 
     return (
         <div>
-            <h1 className = "RSVPHeader">My RSVPs</h1>
+            <div className="ImageHeader">
+                <img className="Banner" src={Fireworks}/>
+                <div className="HeaderObject">
+                    <h1 className="RSVPHeader">My RSVPs</h1>
+                </div>
+            </div>
             {
                 events.map((event, idx) =>
                     <li key={idx}>

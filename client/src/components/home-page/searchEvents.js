@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 //components
 import EventCard from "./eventcard.component"
+import City from "./city.png"
 
 const axios = require("axios")
 
@@ -29,12 +30,16 @@ export default function EventSearch(props) {
 
     return (
         <div>
+            <div className="ImageHeader">
+                <img className="Banner" src={City}/>
+                <div className="HeaderObject">
+                    <h1 className="EventSearchHeader">Search Events</h1>
+                </div>
+            </div>
             <form onSubmit={handleSearch}>
                 <input className = "searchBar" type="text" value={search} placeholder="Search Event By Name" onChange={(e) => setSearch(e.target.value)} />
-                <p> </p>
                 <button className = "searchButton" disabled={!isFormValid()} type="submit">Search</button>
             </form>
-            <h1 className="EventSearchHeader">Events</h1>
             <ul>
                 {
                     events.map((event, idx) =>
