@@ -11,7 +11,7 @@ const qr = require("qrcode")
 export default function EventCard(props) {
     const { username, event, updateEvents } = props
     const url = `http://${window.location.hostname}:5000/api/events/`
-    
+
     const [isModalOpen, setIsModalOpen] = useState(false)
 
     //conditional rendering of buttons
@@ -66,7 +66,7 @@ export default function EventCard(props) {
     return (
         <div className="eventCard">
             <Modal ariaHideApp={false} isOpen={isModalOpen}>
-                <CreateEditEventForm event={event} username={username} setIsModalOpen={setIsModalOpen} updateEvents={updateEvents}/>
+                <CreateEditEventForm event={event} username={username} setIsModalOpen={setIsModalOpen} updateEvents={updateEvents} />
             </Modal>
             <ul className="eventList">
                 <li>Host: {event.host}</li>
@@ -75,6 +75,17 @@ export default function EventCard(props) {
                 <li>Start Date and Time: {(new Date(event.startDateTime)).toString().slice(0, -36)}</li>
                 <li>End Date and Time: {(new Date(event.endDateTime)).toString().slice(0, -36)}</li>
                 <li>Description: {event.description}</li>
+                <li>RSVPs:
+                    <ul>
+                        {
+                            event.RSVPs.map((guest, idx) =>
+                                <li key={idx}>
+                                    {guest}
+                                </li>
+                            )
+                        }
+                    </ul>
+                </li>
             </ul>
             {editEvent}
             {deleteEvent}
