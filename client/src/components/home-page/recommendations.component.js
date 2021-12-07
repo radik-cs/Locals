@@ -14,6 +14,13 @@ export default function Recommendations(props) {
             setEvents(res.data)
         })
     }, [])
+
+    function updateEvents(){
+        let query = { username }
+        axios.get("/api/login/recommendations", { params: query }).then(res => {
+            setEvents(res.data)
+        })
+    }
     return (
         <div>
             <h1>Recomendations</h1>
@@ -21,7 +28,7 @@ export default function Recommendations(props) {
                 {
                     events.map((event, idx) =>
                         <li key={idx}>
-                            <EventCard key={idx} username={username} event={event} />
+                            <EventCard key={idx} username={username} event={event} updateEvents={updateEvents}/>
                         </li>
                     )
                 }

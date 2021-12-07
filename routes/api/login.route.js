@@ -38,6 +38,9 @@ router.post("/", (req, res) => {
 // signin
 router.get("/recommendations", (req, res) => {
     MongoUtil.getDB().collection('users').findOne(req.query).then(user => {
+        // let emptyArray = []
+        // if (user.recs.length == 0) 
+        //     res.send([])
         //get events where
         // 1. host is in the user's recomendations
         // 2. the user has not already RSVP'd
