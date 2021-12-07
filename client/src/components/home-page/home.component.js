@@ -7,6 +7,7 @@ import './home-page.css'
 import MyEvents from "./myevents.component"
 import SearchEvents from "./searchEvents"
 import MyRSVPs from "./myRSVPs.component"
+import Recommendations from "./recommendations.component"
 
 export default function Home(props) {
     const location = useLocation()
@@ -27,6 +28,11 @@ export default function Home(props) {
             name: "my-rsvps",
             label: "My RSVPs",
             content: <MyRSVPs username={username}/>
+        },
+        {
+            name: "recommendations",
+            label: "Recommendations",
+            content: <Recommendations username={username}/>
         }
     ]
     

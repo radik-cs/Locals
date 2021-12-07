@@ -30,9 +30,26 @@ router.post("/", (req, res) => {
             errors.message = "Username taken, please choose a different one."
             errors.success = false
         } else
-            usersColl.insertOne({ username: `${username}`, password: `${password}`})
+            usersColl.insertOne({ username: `${username}`, password: `${password}`, recs: []})
         res.send(errors)
     })
 });
+
+// signin
+router.get("/recommendations", (req, res) => {
+    MongoUtil.getDB().collection('users').findOne(req.query).then(user => {
+        //get events where
+        // 1. host is in the user's recomendations
+        // 2. the user has not already RSVP'd
+        let query = {
+            RSVPs : {$not: {$eq: user.username}},
+            host: {$in: user.recs}
+        }   
+        MongoUtil.getDB().collection('events').find(query).toArray().then(result => {
+            res.send(result)
+        })
+    })
+});
+
 
 module.exports = router;

@@ -21,8 +21,13 @@ router.put("/", (req, res) => {
     let query = {}
     if (_id) {
         query._id = new ObjectID(_id)
-        if (guest) 
+        if (guest) {
             update.$push = { RSVPs: guest }
+            // add host of event to recomended hosts
+            MongoUtil.getDB().collection("users").updateOne({username: `${guest}`},{$push: {recs: `${host}`}}).then(result =>{
+                console.log("added recomendation")
+            })
+        }
     }
     else {
         update.$set._id = new ObjectID()
