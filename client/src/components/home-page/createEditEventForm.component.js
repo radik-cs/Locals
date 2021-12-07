@@ -12,6 +12,8 @@ export default function CreateEditEventForm(props) {
     const [startDateTime, setStartDateTime] = useState(event ? (new Date(new Date(event.startDateTime) - tzoffset)).toISOString().slice(0, -8) : "")
     const [endDateTime, setEndDateTime] = useState(event ? (new Date(new Date(event.endDateTime) - tzoffset)).toISOString().slice(0, -8) : "")
     const [description, setDescription] = useState(event ? event.description : "")
+    const [RSVPs, setRSVPs] = useState(event ? event.RSVPs : [])
+    const [currentGuest, setCurrentGuest] = useState("")
     const title = event ? "Edit Event" : "Add Event"
 
 
@@ -23,7 +25,7 @@ export default function CreateEditEventForm(props) {
             name,
             location,
             startDateTime: new Date(startDateTime),
-            endDateTime : new Date(endDateTime),
+            endDateTime: new Date(endDateTime),
             description
         }
         // if we are doing an update, add the event _id to the query
@@ -43,6 +45,16 @@ export default function CreateEditEventForm(props) {
             endDateTime.length > 0 && +
             new Date(startDateTime) < new Date(endDateTime) && +
             new Date(startDateTime) > new Date()
+    }
+    function handleRemove(){
+        if (currentGuest){
+            console.log(currentGuest)
+        }
+    }
+    function handleAdd(){
+        if (currentGuest){
+            console.log(currentGuest)
+        }
     }
 
     return (
@@ -69,6 +81,20 @@ export default function CreateEditEventForm(props) {
                 <div>
                     <label className="eventArgument">Description:</label>
                     <input type="text" value={description} placeholder="Enter the description" onChange={(e) => setDescription(e.target.value)} />
+                </div>
+                <div>
+                    <label>RSVP's</label>
+                    <input type="text" value={currentGuest} onChange={(e) => setCurrentGuest(e.target.value)} />
+                    <input type="button" value="Add" onClick={(e) => handleAdd()}/>
+                    <input type="button" value="Remove" onClick={(e) => handleRemove()}/>
+                    <ul>
+                        {
+                            RSVPs.map((guest, idx) =>
+                                <li key={idx}>
+                                    <input type="button" value={guest} onClick={(e) => setCurrentGuest(guest)}/>
+                                </li>)
+                        }
+                    </ul>
                 </div>
                 <p> </p>
                 <button className="ExitButton" disabled={!isFormValid()} type="submit">Submit</button>
