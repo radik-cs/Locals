@@ -7,7 +7,7 @@ const router = express.Router();
 
 // add or update event - could clean this up
 router.put("/", (req, res) => {
-    const { host, name, location, startDateTime, endDateTime, description, _id, guest } = req.body
+    const { host, name, location, startDateTime, endDateTime, description, _id, guest, RSVPs, updateRSVPList } = req.body
     let update = {
         $set: {
             host,
@@ -19,13 +19,16 @@ router.put("/", (req, res) => {
         }
     }
     let query = {}
-    if (_id) {
+    if (updateRSVPList) {
+        update.$set.RSVPs = RSVPs
+    }
+    else if (_id) {
         query._id = new ObjectID(_id)
         if (guest) {
             update.$push = { RSVPs: guest }
             // add host of event to recomended hosts
-            MongoUtil.getDB().collection("users").updateOne({username: `${guest}`},{$push: {recs: `${host}`}}).then(result =>{
-                console.log("added recomendation")
+            MongoUtil.getDB().collection("users").updateOne({ username: `${guest}` }, { $push: { recs: `${host}` } }).then(result => {
+                //added rec
             })
         }
     }

@@ -14,6 +14,7 @@ export default function CreateEditEventForm(props) {
     const [description, setDescription] = useState(event ? event.description : "")
     const [RSVPs, setRSVPs] = useState(event ? event.RSVPs : [])
     const [currentGuest, setCurrentGuest] = useState("")
+    const [updateRSVPList, setUpdateRSVPList] = useState(false)
     const title = event ? "Edit Event" : "Add Event"
 
 
@@ -26,7 +27,9 @@ export default function CreateEditEventForm(props) {
             location,
             startDateTime: new Date(startDateTime),
             endDateTime: new Date(endDateTime),
-            description
+            description,
+            RSVPs: RSVPs,
+            updateRSVPList
         }
         // if we are doing an update, add the event _id to the query
         if (event)
@@ -35,6 +38,7 @@ export default function CreateEditEventForm(props) {
             setIsModalOpen(false)
             updateEvents()
         })
+        setUpdateRSVPList(false)
     }
     function isFormValid() {
         return +
@@ -46,14 +50,18 @@ export default function CreateEditEventForm(props) {
             new Date(startDateTime) < new Date(endDateTime) && +
             new Date(startDateTime) > new Date()
     }
-    function handleRemove(){
-        if (currentGuest){
-            console.log(currentGuest)
+    function handleRemove() {
+        if (currentGuest.length != 0 && RSVPs) {
+            setUpdateRSVPList(true)
+            let newRSVPs = RSVPs.filter(item => item !== currentGuest)
+            setRSVPs(newRSVPs)
         }
     }
-    function handleAdd(){
-        if (currentGuest){
-            console.log(currentGuest)
+    function handleAdd() {
+        if (currentGuest.length != 0) {
+            setUpdateRSVPList(true)
+            let newRSVPs = RSVPs.concat(currentGuest)
+            setRSVPs(newRSVPs)
         }
     }
 
@@ -85,13 +93,13 @@ export default function CreateEditEventForm(props) {
                 <div>
                     <label>RSVP's</label>
                     <input type="text" value={currentGuest} onChange={(e) => setCurrentGuest(e.target.value)} />
-                    <input type="button" value="Add" onClick={(e) => handleAdd()}/>
-                    <input type="button" value="Remove" onClick={(e) => handleRemove()}/>
+                    <input type="button" value="Add" onClick={(e) => handleAdd()} />
+                    <input type="button" value="Remove" onClick={(e) => handleRemove()} />
                     <ul>
-                        {
+                        {RSVPs &&
                             RSVPs.map((guest, idx) =>
                                 <li key={idx}>
-                                    <input type="button" value={guest} onClick={(e) => setCurrentGuest(guest)}/>
+                                    <input type="button" value={guest} onClick={(e) => setCurrentGuest(guest)} />
                                 </li>)
                         }
                     </ul>
