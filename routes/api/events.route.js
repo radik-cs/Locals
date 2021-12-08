@@ -72,7 +72,7 @@ router.get("/:id", (req, res) => {
     let options = { upsert: false }
     MongoUtil.getDB().collection('events').updateOne(query, update, options).then(result => {
         if (result.matchedCount == 1 && result.modifiedCount == 1) {
-            res.send(`Welcome ${guest_usernae}!`)
+            res.send(`Welcome ${guest_username}!`)
         }
         else {
             res.send("QR code invalid")
