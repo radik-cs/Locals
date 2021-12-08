@@ -113,6 +113,12 @@ ul
     opacity: 1;
 }
 
+.eventRSVPButton
+{
+	margin-left: 10px;
+	padding-left: 10px;
+}
+
 .ExitButton
 {
 	margin: 10px;
@@ -169,7 +175,7 @@ h3
   opacity: 1;
 }
 
-.EventSearchHeader, .MyEventHeader, .RSVPHeader
+.EventSearchHeader, .MyEventHeader, .RSVPHeader, .RecommendationsHeader
 {
 	color: white;
 }

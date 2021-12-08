@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 
 import EventCard from "./eventcard.component"
+import Boat from "./boat.jpg"
 
 const axios = require("axios")
 
@@ -23,7 +24,12 @@ export default function Recommendations(props) {
     }
     return (
         <div>
-            <h1>Recomendations</h1>
+            <div className="ImageHeader">
+                <img className="Banner" src={Boat}/>
+                <div className="HeaderObject">
+                    <h1 className="RecommendationsHeader">Recommendations</h1>
+                </div>
+            </div>
             <ul>
                 {
                     events.map((event, idx) =>

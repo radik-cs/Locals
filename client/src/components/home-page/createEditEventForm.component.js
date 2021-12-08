@@ -91,10 +91,10 @@ export default function CreateEditEventForm(props) {
                     <input type="text" value={description} placeholder="Enter the description" onChange={(e) => setDescription(e.target.value)} />
                 </div>
                 <div>
-                    <label>RSVP's</label>
+                    <label className="eventArgument">RSVP's: </label>
                     <input type="text" value={currentGuest} onChange={(e) => setCurrentGuest(e.target.value)} />
-                    <input type="button" value="Add" onClick={(e) => handleAdd()} />
-                    <input type="button" value="Remove" onClick={(e) => handleRemove()} />
+                    <input type="button" className="eventRSVPButton" value="Add" onClick={(e) => handleAdd()}/>
+                    <input type="button" className="eventRSVPButton" value="Remove" onClick={(e) => handleRemove()}/>
                     <ul>
                         {RSVPs &&
                             RSVPs.map((guest, idx) =>
