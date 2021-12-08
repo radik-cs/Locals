@@ -31,7 +31,6 @@ export default function CreateEditEventForm(props) {
             RSVPs: RSVPs,
             updateRSVPList
         }
-        // if we are doing an update, add the event _id to the query
         if (event)
             query._id = event._id
         axios.put("/api/events", query).then(res => {
@@ -53,6 +52,7 @@ export default function CreateEditEventForm(props) {
     function handleRemove() {
         if (currentGuest.length != 0 && RSVPs) {
             setUpdateRSVPList(true)
+            console.log(currentGuest)
             let newRSVPs = RSVPs.filter(item => item !== currentGuest)
             setRSVPs(newRSVPs)
         }

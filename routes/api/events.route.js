@@ -19,10 +19,11 @@ router.put("/", (req, res) => {
         }
     }
     let query = {}
-    if (updateRSVPList) {
+    if (updateRSVPList && _id) { // the host is adding/removing guests from an existing event
+        query._id = new ObjectID(_id)
         update.$set.RSVPs = RSVPs
     }
-    else if (_id) {
+    else if (!updateRSVPList && _id) { //a guest has RSVP'd to an event
         query._id = new ObjectID(_id)
         if (guest) {
             update.$push = { RSVPs: guest }
@@ -32,14 +33,17 @@ router.put("/", (req, res) => {
             })
         }
     }
-    else {
+    else if(updateRSVPList && !_id){ //we are creating an event with an RSVP list
         update.$set._id = new ObjectID()
-        update.$set.RSVPs = []
         query._id = update.$set._id
+        update.$set.RSVPs = RSVPs
     }
-
+    else { // we are creating an event with no RSVP list
+        update.$set._id = new ObjectID()
+        query._id = update.$set._id
+        update.$set.RSVPs = []  
+    }
     let options = { upsert: true }
-
     MongoUtil.getDB().collection("events").updateOne(query, update, options).then(result => {
         res.send()
     })
@@ -68,7 +72,7 @@ router.get("/:id", (req, res) => {
     let options = { upsert: false }
     MongoUtil.getDB().collection('events').updateOne(query, update, options).then(result => {
         if (result.matchedCount == 1 && result.modifiedCount == 1) {
-            res.send("guest successfully checked in")
+            res.send(`Welcome ${guest_usernae}!`)
         }
         else {
             res.send("QR code invalid")
